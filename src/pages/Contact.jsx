@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,26 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+  const [messageType, setMessageType] = useState('') // 'success' or 'error'
+  const [visibleSections, setVisibleSections] = useState({
+    header: false,
+    contactInfo: false,
+    form: false,
+    social: false,
+    cta: false
+  })
+
+  useEffect(() => {
+    const timeouts = [
+      setTimeout(() => setVisibleSections(prev => ({ ...prev, header: true })), 100),
+      setTimeout(() => setVisibleSections(prev => ({ ...prev, contactInfo: true })), 300),
+      setTimeout(() => setVisibleSections(prev => ({ ...prev, form: true })), 500),
+      setTimeout(() => setVisibleSections(prev => ({ ...prev, social: true })), 700),
+      setTimeout(() => setVisibleSections(prev => ({ ...prev, cta: true })), 900)
+    ]
+
+    return () => timeouts.forEach(clearTimeout)
+  }, [])
 
   const handleChange = (e) => {
     setFormData({
@@ -21,13 +42,36 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitMessage('')
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // EmailJS configuration
+      const serviceId = 'service_your_service_id' // Replace with your EmailJS service ID
+      const templateId = 'template_your_template_id' // Replace with your EmailJS template ID
+      const publicKey = 'your_public_key' // Replace with your EmailJS public key
+      
+      // Template parameters that will be sent to your email
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'byamugishanthony@gmail.com' // Your email address
+      }
+      
+      // Send email using EmailJS
+      await emailjs.send(serviceId, templateId, templateParams, publicKey)
+      
       setIsSubmitting(false)
+      setMessageType('success')
       setSubmitMessage('Thank you for your message! I\'ll get back to you soon.')
       setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 1000)
+    } catch (error) {
+      console.error('Email sending failed:', error)
+      setIsSubmitting(false)
+      setMessageType('error')
+      setSubmitMessage('Sorry, there was an error sending your message. Please try again or email me directly.')
+    }
   }
 
   const contactInfo = [
@@ -97,7 +141,9 @@ const Contact = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white py-16 relative overflow-hidden">
+      <section className={`bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white py-16 relative overflow-hidden transition-all duration-1000 ${
+        visibleSections.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}>
         {/* Animated background elements */}
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
@@ -106,8 +152,12 @@ const Contact = () => {
           <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
         </div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6" style={{ color: '#fff', opacity: 1 }}>Get In Touch</h1>
-          <p className="text-xl max-w-3xl mx-auto" style={{ color: '#fff', opacity: 1 }}>
+          <h1 className={`text-4xl sm:text-5xl font-bold mb-6 transition-all duration-1000 delay-200 ${
+            visibleSections.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`} style={{ color: '#fff' }}>Get In Touch</h1>
+          <p className={`text-xl max-w-3xl mx-auto transition-all duration-1000 delay-400 ${
+            visibleSections.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`} style={{ color: '#fff' }}>
             I'm always interested in new opportunities and exciting projects. Whether you have a question, 
             want to discuss a potential collaboration, or just want to say hello, I'd love to hear from you.
           </p>
@@ -117,9 +167,15 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Let's Connect</h2>
-            <p className="text-lg text-gray-600 mb-8">
+          <div className={`transition-all duration-1000 delay-200 ${
+            visibleSections.contactInfo ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+          }`}>
+            <h2 className={`text-3xl font-bold text-gray-900 mb-8 transition-all duration-1000 delay-300 ${
+              visibleSections.contactInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}>Let's Connect</h2>
+            <p className={`text-lg text-gray-600 mb-8 transition-all duration-1000 delay-400 ${
+              visibleSections.contactInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}>
               Ready to bring your ideas to life? I'm passionate about creating innovative solutions 
               and would love to discuss how we can work together on your next project.
             </p>
@@ -127,8 +183,14 @@ const Contact = () => {
             {/* Contact Details */}
             <div className="space-y-6 mb-8">
               {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-center">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                <div 
+                  key={index} 
+                  className={`flex items-center transition-all duration-1000 hover:transform hover:scale-105 ${
+                    visibleSections.contactInfo ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5'
+                  }`}
+                  style={{ transitionDelay: `${500 + index * 100}ms` }}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg flex items-center justify-center text-blue-600 shadow-md hover:shadow-lg transition-all duration-300">
                     {info.icon}
                   </div>
                   <div className="ml-4">
@@ -136,12 +198,12 @@ const Contact = () => {
                     {info.link ? (
                       <a 
                         href={info.link} 
-                        className="text-lg text-gray-900 hover:text-blue-600 transition-colors"
+                        className="text-lg text-gray-900 hover:text-blue-600 transition-colors font-medium"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-lg text-gray-900">{info.value}</p>
+                      <p className="text-lg text-gray-900 font-medium">{info.value}</p>
                     )}
                   </div>
                 </div>
@@ -149,16 +211,21 @@ const Contact = () => {
             </div>
 
             {/* Social Links */}
-            <div>
+            <div className={`transition-all duration-1000 delay-800 ${
+              visibleSections.social ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Follow Me</h3>
               <div className="flex space-x-4">
-                {socialLinks.map((social) => (
+                {socialLinks.map((social, index) => (
                   <a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+                    className={`w-12 h-12 bg-gradient-to-r from-gray-100 to-gray-50 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 hover:text-blue-600 transition-all duration-300 transform hover:scale-110 hover:shadow-lg ${
+                      visibleSections.social ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+                    }`}
+                    style={{ transitionDelay: `${900 + index * 100}ms` }}
                     aria-label={social.name}
                   >
                     {social.icon}
@@ -169,17 +236,27 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div>
-            <div className="bg-white border border-gray-200 rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send a Message</h2>
+          <div className={`transition-all duration-1000 delay-400 ${
+            visibleSections.form ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          }`}>
+            <div className="bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 p-8 backdrop-blur-sm">
+              <h2 className={`text-2xl font-bold text-gray-900 mb-6 transition-all duration-1000 delay-500 ${
+                visibleSections.form ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+              }`}>Send a Message</h2>
               
               {submitMessage && (
-                <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4">
-                  <p className="text-green-800">{submitMessage}</p>
+                <div className={`mb-6 border rounded-lg p-4 transition-all duration-500 transform hover:scale-102 ${
+                  messageType === 'success' 
+                    ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 text-green-800 shadow-md' 
+                    : 'bg-gradient-to-r from-red-50 to-rose-50 border-red-200 text-red-800 shadow-md'
+                }`}>
+                  <p className="font-medium">{submitMessage}</p>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className={`space-y-6 transition-all duration-1000 delay-600 ${
+                visibleSections.form ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+              }`}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -192,7 +269,7 @@ const Contact = () => {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400 focus:shadow-lg"
                       placeholder="Your full name"
                     />
                   </div>
@@ -207,7 +284,7 @@ const Contact = () => {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400 focus:shadow-lg"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -224,7 +301,7 @@ const Contact = () => {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400 focus:shadow-lg"
                     placeholder="What's this about?"
                   />
                 </div>
@@ -240,7 +317,7 @@ const Contact = () => {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400 focus:shadow-lg resize-none"
                     placeholder="Tell me about your project or just say hello..."
                   />
                 </div>
@@ -248,9 +325,19 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold transform hover:scale-105 hover:shadow-lg"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    'Send Message'
+                  )}
                 </button>
               </form>
             </div>
@@ -259,23 +346,37 @@ const Contact = () => {
       </div>
 
       {/* Additional CTA Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Ready to Start Something Amazing?</h2>
-          <p className="text-xl text-gray-600 mb-8">
+      <section className={`bg-gradient-to-br from-gray-50 to-blue-50 py-16 relative overflow-hidden transition-all duration-1000 ${
+        visibleSections.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}>
+        {/* Floating background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/4 w-36 h-36 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '4s' }}></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className={`text-3xl font-bold text-gray-900 mb-6 transition-all duration-1000 delay-200 ${
+            visibleSections.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}>Ready to Start Something Amazing?</h2>
+          <p className={`text-xl text-gray-600 mb-8 transition-all duration-1000 delay-400 ${
+            visibleSections.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}>
             Let's turn your vision into reality. I'm excited to learn about your project and 
             discuss how we can create something extraordinary together.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-600 ${
+            visibleSections.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}>
             <a
               href="mailto:byamugishanthony@gmail.com"
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold transform hover:scale-105 hover:shadow-lg"
             >
               Email Me Directly
             </a>
             <a
               href="/resume"
-              className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:border-gray-400 transition-colors font-semibold"
+              className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 font-semibold transform hover:scale-105 hover:shadow-md"
             >
               View Resume
             </a>
