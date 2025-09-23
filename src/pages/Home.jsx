@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import anthonyImage from '/images/anthony.jpg'
 
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -123,7 +124,7 @@ const Home = () => {
           <div 
             className="w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full bg-cover bg-center opacity-95 animate-float"
             style={{
-              backgroundImage: 'url(/images/anthony.jpg)',
+              backgroundImage: `url(${anthonyImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               boxShadow: '0 0 150px rgba(59, 130, 246, 0.6), 0 0 300px rgba(147, 51, 234, 0.5)'
@@ -152,10 +153,10 @@ const Home = () => {
         {/* Minimal depth gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10"></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 z-10">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 z-10">
           <div className="text-center">
-            <div className="mb-8">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+            <div className="mb-6 sm:mb-8">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6">
                 <div className="flex flex-wrap justify-center gap-2 md:gap-4">
                   {nameWords.map((word, index) => (
                     <span 
@@ -180,12 +181,12 @@ const Home = () => {
                   ))}
                 </div>
               </h1>
-              <div className={`w-24 h-1 bg-gradient-to-r from-white to-blue-200 mx-auto rounded-full transition-all duration-1000 shadow-lg ${
+              <div className={`w-16 sm:w-24 h-1 bg-gradient-to-r from-white to-blue-200 mx-auto rounded-full transition-all duration-1000 shadow-lg ${
                 isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
               }`} style={{ transitionDelay: '0.8s', boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}></div>
             </div>
-            <div className="mb-12">
-              <p className="text-xl sm:text-2xl md:text-3xl leading-relaxed max-w-4xl mx-auto">
+            <div className="mb-8 sm:mb-12">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl leading-relaxed max-w-5xl mx-auto">
                 <span className="flex flex-wrap justify-center gap-1 sm:gap-2">
                   {taglineWords.map((word, index) => {
                     const isVisible = index <= currentWord
@@ -227,12 +228,12 @@ const Home = () => {
                 </span>
               </p>
             </div>
-            <div className={`flex flex-col sm:flex-row gap-6 justify-center transition-all duration-1000 transform ${
+            <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center transition-all duration-1000 transform ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
             }`} style={{ transitionDelay: '2.5s' }}>
               <Link
                 to="/projects"
-                className="group bg-white/95 hover:bg-white text-blue-600 font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:rotate-1 shadow-2xl hover:shadow-3xl border-2 border-transparent hover:border-blue-300 backdrop-blur-sm"
+                className="w-full sm:w-auto group bg-white/95 hover:bg-white text-blue-600 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:rotate-1 shadow-2xl hover:shadow-3xl border-2 border-transparent hover:border-blue-300 backdrop-blur-sm"
                 style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.1)' }}
               >
                 <span className="flex items-center justify-center">
@@ -244,7 +245,7 @@ const Home = () => {
               </Link>
               <Link
                 to="/resume"
-                className="group border-2 border-white/90 text-white hover:bg-white hover:text-blue-600 font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:-rotate-1 backdrop-blur-sm"
+                className="w-full sm:w-auto group border-2 border-white/90 text-white hover:bg-white hover:text-blue-600 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:-rotate-1 backdrop-blur-sm"
                 style={{ 
                   boxShadow: '0 10px 30px rgba(0,0,0,0.3), inset 0 0 20px rgba(255,255,255,0.1)',
                   textShadow: '1px 1px 4px rgba(0,0,0,0.5)'

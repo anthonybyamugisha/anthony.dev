@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import anthonyImage from '/images/anthony.jpg'
 
 const Resume = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -119,7 +120,7 @@ const Resume = () => {
             <div 
               className="w-20 h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 rounded-full bg-cover bg-center border-4 border-white shadow-2xl transform hover:scale-105 transition-all duration-500 animate-float"
               style={{
-                backgroundImage: 'url(/images/anthony.jpg)',
+                backgroundImage: `url(${anthonyImage})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5)'

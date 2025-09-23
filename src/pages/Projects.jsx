@@ -155,11 +155,16 @@ const Projects = () => {
                     {/* Tech Stack */}
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-3">Tech Stack:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.techStack.map((tech) => (
+                      <div className="flex flex-wrap gap-3">
+                        {project.techStack.map((tech, techIndex) => (
                           <span
                             key={tech}
-                            className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium"
+                            className={`bg-gradient-to-r from-gray-100 to-gray-50 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 hover:from-blue-100 hover:to-purple-100 ${
+                              visibleSections.projects.includes(index)
+                                ? 'opacity-100 translate-y-0'
+                                : 'opacity-0 translate-y-3'
+                            }`}
+                            style={{ transitionDelay: `${400 + techIndex * 100}ms` }}
                           >
                             {tech}
                           </span>
@@ -169,14 +174,24 @@ const Projects = () => {
 
                     {/* Key Features */}
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Key Features:</h4>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Features:</h4>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {project.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start">
-                            <svg className="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                            <span className="text-gray-600 text-sm">{feature}</span>
+                          <li 
+                            key={featureIndex} 
+                            className={`flex items-start p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 transform hover:scale-102 ${
+                              visibleSections.projects.includes(index)
+                                ? 'opacity-100 translate-x-0'
+                                : 'opacity-0 -translate-x-3'
+                            }`}
+                            style={{ transitionDelay: `${600 + featureIndex * 100}ms` }}
+                          >
+                            <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 shadow-md">
+                              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <span className="text-gray-700 text-sm font-medium">{feature}</span>
                           </li>
                         ))}
                       </ul>
