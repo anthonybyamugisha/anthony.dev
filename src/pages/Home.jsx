@@ -122,13 +122,13 @@ const Home = () => {
         {/* Background Image */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div 
-            className="w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full bg-cover bg-center opacity-95 animate-float"
-            style={{
-              backgroundImage: `url(${anthonyImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              boxShadow: '0 0 150px rgba(59, 130, 246, 0.6), 0 0 300px rgba(147, 51, 234, 0.5)'
-            }}
+            className="w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full bg-gray-400 opacity-95 animate-float"
+            // style={{
+            //   backgroundImage: `url(${anthonyImage})`,
+            //   backgroundSize: 'cover',
+            //   backgroundPosition: 'center',
+            //   boxShadow: '0 0 150px rgba(59, 130, 246, 0.6), 0 0 300px rgba(147, 51, 234, 0.5)'
+            // }}
           ></div>
         </div>
         
