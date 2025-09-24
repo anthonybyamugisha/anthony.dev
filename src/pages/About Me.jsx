@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import anthonyImage from '/images/anthony.jpg'
 
-const Home = () => {
+const AboutMe = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentWord, setCurrentWord] = useState(0)
   const [visibleSections, setVisibleSections] = useState([])
@@ -61,7 +61,7 @@ const Home = () => {
       description: 'Django',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
         </svg>
       )
     },
@@ -118,17 +118,18 @@ const Home = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative text-white overflow-hidden min-h-screen flex items-center">
+      <section className="relative text-white overflow-hidden min-h-screen flex items-center bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
         {/* Background Image */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div 
-            className="w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full bg-gray-400 opacity-95 animate-float"
-            // style={{
-            //   backgroundImage: `url(${anthonyImage})`,
-            //   backgroundSize: 'cover',
-            //   backgroundPosition: 'center',
-            //   boxShadow: '0 0 150px rgba(59, 130, 246, 0.6), 0 0 300px rgba(147, 51, 234, 0.5)'
-            // }}
+            className="w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full opacity-95 animate-float"
+            style={{
+              backgroundImage: `url(${anthonyImage})`,
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              boxShadow: '0 0 150px rgba(59, 130, 246, 0.6), 0 0 300px rgba(147, 51, 234, 0.5)'
+            }}
           ></div>
         </div>
         
@@ -387,6 +388,7 @@ const Home = () => {
       <section className={`py-20 bg-white relative overflow-hidden transform transition-all duration-1000 ${
         visibleSections.includes(2) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       }`} style={{ transitionDelay: '600ms' }}>
+
         {/* Animated background particles */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping" style={{ animationDelay: '0s' }}></div>
@@ -429,4 +431,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default AboutMe
