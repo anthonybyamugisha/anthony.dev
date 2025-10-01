@@ -115,7 +115,7 @@ const Projects = () => {
         'Friend connections and messaging',
         'Content sharing with reactions',
         'Real-time notifications',
-        'News feed algorithm',
+        'News feed algorithms',
         'Media upload and storage'
       ],
       github: 'https://github.com/anthonybyamugisha',
