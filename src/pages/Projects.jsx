@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const [visibleSections, setVisibleSections] = useState({
@@ -348,9 +349,9 @@ const Projects = () => {
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             I'm always excited to collaborate on new projects and bring innovative ideas to life.
           </p>
-          <a href="/contact" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg transform hover:scale-105 inline-block">
+          <Link to="/contact" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg transform hover:scale-105 inline-block">
             Get In Touch
-          </a>
+          </Link>
         </div>
       </section>
     </div>
