@@ -9,20 +9,27 @@ const Projects = () => {
   const [filter, setFilter] = useState('All');
 
   useEffect(() => {
+    // Initialize all projects as visible from the start
+    const initialVisibleProjects = getFilteredProjects().map((_, index) => index);
+    
     const timeouts = [
       setTimeout(() => setVisibleSections(prev => ({ ...prev, header: true })), 100),
+      setTimeout(() => setVisibleSections(prev => ({ ...prev, projects: initialVisibleProjects })), 300),
       setTimeout(() => setVisibleSections(prev => ({ ...prev, cta: true })), 800)
     ];
     
-    const projectsToShow = getFilteredProjects();
-    timeouts.push(setTimeout(() => {
-      setVisibleSections(prev => ({
-        ...prev,
-        projects: projectsToShow.map((_, index) => index)
-      }));
-    }, 300));
-    
     return () => timeouts.forEach(clearTimeout);
+  }, []);
+
+  // Reset visibility when filter changes
+  useEffect(() => {
+    const filtered = getFilteredProjects();
+    const visibleProjects = filtered.map((_, index) => index);
+    
+    setVisibleSections(prev => ({
+      ...prev,
+      projects: visibleProjects
+    }));
   }, [filter]);
 
   const projects = [
@@ -131,15 +138,6 @@ const Projects = () => {
     }
     return projects.filter(project => project.category === category).length;
   };
-
-  // Reset visibility when filter changes
-  useEffect(() => {
-    setVisibleSections({
-      header: visibleSections.header,
-      projects: [],
-      cta: visibleSections.cta
-    });
-  }, [filter, visibleSections.header, visibleSections.cta]);
 
   const filteredProjects = getFilteredProjects();
 
