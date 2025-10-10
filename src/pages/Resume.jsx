@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react'
 import anthonyImage from '/images/anthony.jpg'
 
 const Resume = () => {
-  const [isLoaded, setIsLoaded] = useState(true)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [currentWord, setCurrentWord] = useState(18) // All words visible
+  const [animatedSections, setAnimatedSections] = useState({})
   
   // All sections are visible by default to prevent blank pages
   const visibleSections = [0, 1, 2, 3, 4, 5]
+  
+  const nameWords = ['BYAMUGISHA', 'ANTHONY']
+  const titleWords = ['Aspiring', 'Computer', 'Scientist', 'and', 'Data', 'Enthusiast']
+  
   const education = [
     {
       period: '2024-Present',
@@ -81,6 +87,43 @@ const Resume = () => {
     }
   ]
 
+  // Handle scroll animations
+  useEffect(() => {
+    setIsLoaded(true)
+    
+    // Animate title words sequentially (similar to About page)
+    const wordTimer = setTimeout(() => {
+      let wordIndex = -1
+      const wordInterval = setInterval(() => {
+        wordIndex++
+        setCurrentWord(wordIndex)
+        if (wordIndex >= titleWords.length - 1) {
+          clearInterval(wordInterval)
+        }
+      }, 150)
+    }, 1000)
+    
+    // Handle section animations on scroll
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section')
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect()
+        const isVisible = rect.top < window.innerHeight * 0.75 && rect.bottom >= 0
+        if (isVisible && !animatedSections[index]) {
+          setAnimatedSections(prev => ({ ...prev, [index]: true }))
+        }
+      })
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Check initial positions
+    
+    return () => {
+      clearTimeout(wordTimer)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <div className="bg-white min-h-screen">
       {/* Header Section */}
@@ -114,22 +157,60 @@ const Resume = () => {
               opacity: isLoaded ? 1 : 0,
               textShadow: '2px 2px 8px rgba(0,0,0,0.3)'
             }}>
-              BYAMUGISHA ANTHONY
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+                {nameWords.map((word, index) => (
+                  <span 
+                    key={index}
+                    className={`inline-block transform transition-all duration-1000 ${isLoaded ? 'translate-x-0 translate-y-0 opacity-100 rotate-0' : 'translate-y-10 opacity-0'}`}
+                    style={{ 
+                      transitionDelay: `${0.5 + index * 0.3}s`,
+                      color: '#fff', 
+                      textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
+                      WebkitTextStroke: '1px rgba(255,255,255,0.1)'
+                    }}
+                  >
+                    {word}
+                  </span>
+                ))}
+              </div>
             </h1>
             <h2 className="text-xl sm:text-2xl mb-6 transform transition-all duration-1000 translate-y-0 opacity-100" style={{ 
               color: '#fff', 
               opacity: isLoaded ? 1 : 0,
-              transitionDelay: '300ms',
+              transitionDelay: '1.3s',
               textShadow: '1px 1px 4px rgba(0,0,0,0.3)'
             }}>
-              Aspiring Computer Scientist and Data Enthusiast
+              <span className="flex flex-wrap justify-center gap-1 sm:gap-2">
+                {titleWords.map((word, index) => {
+                  const isVisible = index <= currentWord
+                  
+                  return (
+                    <span 
+                      key={index}
+                      className={`inline-block transition-all duration-700 transform translate-x-0 translate-y-0 opacity-100 rotate-0 ${
+                        ['Computer', 'Scientist'].includes(word) ? 'text-yellow-300 font-semibold' :
+                        ['Data', 'Enthusiast'].includes(word) ? 'text-blue-200 font-semibold' :
+                        'text-white'
+                      }`}
+                      style={{ 
+                        transitionDelay: `${index * 0.1}s`,
+                        color: isVisible ? undefined : 'transparent',
+                        textShadow: isVisible ? '1px 1px 6px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4)' : 'none'
+                      }}
+                    >
+                      {word}
+                      {index < titleWords.length - 1 && ' '}
+                    </span>
+                  )
+                })}
+              </span>
             </h2>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 transform transition-all duration-1000 translate-y-0 opacity-100" style={{ 
               color: '#fff', 
               opacity: isLoaded ? 1 : 0,
-              transitionDelay: '600ms'
+              transitionDelay: '2.5s'
             }}>
-              <div className="flex items-center space-x-2 transform transition-all duration-500 hover:scale-105 translate-x-0 opacity-100" style={{ transitionDelay: '800ms' }}>
+              <div className="flex items-center space-x-2 transform transition-all duration-500 hover:scale-105 translate-x-0 opacity-100" style={{ transitionDelay: '2.7s' }}>
                 <svg className="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
@@ -137,7 +218,7 @@ const Resume = () => {
               </div>
               <div className={`flex items-center space-x-2 transform transition-all duration-500 hover:scale-105 ${
                 isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-              }`} style={{ transitionDelay: '1000ms' }}>
+              }`} style={{ transitionDelay: '2.9s' }}>
                 <svg className="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: '0.5s' }}>
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
@@ -145,7 +226,7 @@ const Resume = () => {
               </div>
               <div className={`flex items-center space-x-2 transform transition-all duration-500 hover:scale-105 ${
                 isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-              }`} style={{ transitionDelay: '1200ms' }}>
+              }`} style={{ transitionDelay: '3.1s' }}>
                 <svg className="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: '1s' }}>
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
@@ -404,7 +485,7 @@ const Resume = () => {
         </section>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Resume
+export default Resume;
