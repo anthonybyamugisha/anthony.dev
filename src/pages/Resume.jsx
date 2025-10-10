@@ -415,9 +415,9 @@ const Resume = () => {
             Languages
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
           </h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {languages.map((lang, index) => (
-              <div key={index} className="relative bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 rounded-xl p-6 border border-indigo-200 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
+              <div key={index} className="relative bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 rounded-xl p-6 border border-indigo-200 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden mobile-card">
                 {/* Animated background elements */}
                 <div className="absolute inset-0 opacity-20">
                   <div className="absolute top-2 right-2 w-10 h-10 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-full blur-lg animate-pulse" style={{ animationDelay: `${index * 0.3}s` }}></div>
@@ -455,11 +455,11 @@ const Resume = () => {
             References
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
           </h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {references.map((ref, index) => (
               <div 
                 key={index} 
-                className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group relative overflow-hidden"
+                className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group relative overflow-hidden mobile-card"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Animated background gradient */}

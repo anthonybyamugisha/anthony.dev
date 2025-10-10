@@ -193,7 +193,7 @@ These chatbots have successfully reduced customer service response times by up t
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-64 object-contain p-4 bg-white"
+                  className="w-full h-64 object-contain p-4 bg-white mobile-card"
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = 'https://placehold.co/600x400/3b82f6/ffffff?text=Project+Image';
@@ -249,7 +249,7 @@ These chatbots have successfully reduced customer service response times by up t
             </div>
             
             {/* Features */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl shadow-sm">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 sm:p-8 rounded-xl shadow-sm mobile-card">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h2>
               <ul className="space-y-3">
                 {project.features.map((feature, index) => (

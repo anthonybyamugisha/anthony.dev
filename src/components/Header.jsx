@@ -91,7 +91,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform ${
+                className={`block mobile-nav-item px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform ${
                   location.pathname === item.href
                     ? 'text-blue-600 bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-600 shadow-sm'
                     : 'text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:translate-x-2'

@@ -232,11 +232,11 @@ const Projects = () => {
               <p className="text-gray-500">There are no projects in this category yet. Check back soon!</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mobile-project-grid gap-8">
               {filteredProjects.map((project, index) => (
                 <div 
                   key={project.id}
-                  className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden group"
+                  className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden group mobile-card"
                 >
                   {/* Project Image */}
                   <div className="relative h-48 overflow-hidden">

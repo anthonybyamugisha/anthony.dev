@@ -290,11 +290,11 @@ const AboutMe = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mobile-project-grid">
             {skills.map((skill, index) => (
               <div
                 key={skill.title}
-                className={`group bg-gradient-to-br from-white to-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 hover:rotate-2 card-hover border border-gray-200 hover:border-teal-300 relative overflow-hidden ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group bg-gradient-to-br from-white to-gray-50 p-6 mobile-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 hover:rotate-2 card-hover border border-gray-200 hover:border-teal-300 relative overflow-hidden ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.1}s`,
                   transitionDelay: `${600 + index * 100}ms`
@@ -344,11 +344,11 @@ const AboutMe = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mobile-project-grid">
             {beyondCoding.map((item, index) => (
               <div
                 key={item.title}
-                className={`group text-center p-8 rounded-xl bg-gradient-to-br from-white to-gray-50 hover:from-cyan-50 hover:to-blue-50 hover:shadow-lg transition-all duration-500 card-hover transform hover:-translate-y-2 hover:scale-105 border border-gray-200 hover:border-cyan-300 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group text-center p-6 mobile-card rounded-xl bg-gradient-to-br from-white to-gray-50 hover:from-cyan-50 hover:to-blue-50 hover:shadow-lg transition-all duration-500 card-hover transform hover:-translate-y-2 hover:scale-105 border border-gray-200 hover:border-cyan-300 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.15}s`,
                   transitionDelay: `${900 + index * 100}ms`
