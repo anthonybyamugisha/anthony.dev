@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import anthonyImage from '/images/anthony.jpg'
 
 const AboutMe = () => {
-  const [isLoaded, setIsLoaded] = useState(true)
-  const [currentWord, setCurrentWord] = useState(18) // All words visible
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [currentWord, setCurrentWord] = useState(-1) // Start with no words visible
+  const [animatedSections, setAnimatedSections] = useState({})
   
   // All sections are visible by default to prevent blank pages
   const visibleSections = [0, 1, 2, 3]
@@ -62,7 +63,7 @@ const AboutMe = () => {
     },
     {
       title: 'Community',
-      description: 'Contributing to open source and mentoring',
+      description: 'Mentoring other developers',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -80,6 +81,43 @@ const AboutMe = () => {
     }
   ]
 
+  // Handle scroll animations
+  useEffect(() => {
+    setIsLoaded(true)
+    
+    // Animate tagline words sequentially
+    const wordTimer = setTimeout(() => {
+      let wordIndex = -1
+      const wordInterval = setInterval(() => {
+        wordIndex++
+        setCurrentWord(wordIndex)
+        if (wordIndex >= taglineWords.length - 1) {
+          clearInterval(wordInterval)
+        }
+      }, 150)
+    }, 1000)
+    
+    // Handle section animations on scroll
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section')
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect()
+        const isVisible = rect.top < window.innerHeight * 0.75 && rect.bottom >= 0
+        if (isVisible && !animatedSections[index]) {
+          setAnimatedSections(prev => ({ ...prev, [index]: true }))
+        }
+      })
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Check initial positions
+    
+    return () => {
+      clearTimeout(wordTimer)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -87,13 +125,14 @@ const AboutMe = () => {
         {/* Background Image */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div 
-            className="w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full opacity-95 animate-float"
+            className={`w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full opacity-95 animate-float transition-all duration-1000 ${isLoaded ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
             style={{
               backgroundImage: `url(${anthonyImage})`,
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              boxShadow: '0 0 150px rgba(59, 130, 246, 0.6), 0 0 300px rgba(147, 51, 234, 0.5)'
+              boxShadow: '0 0 150px rgba(59, 130, 246, 0.6), 0 0 300px rgba(147, 51, 234, 0.5)',
+              transitionDelay: '0.5s'
             }}
           ></div>
         </div>
@@ -108,12 +147,12 @@ const AboutMe = () => {
         
         {/* Enhanced Animated background elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
-          <div className="absolute top-20 right-20 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute bottom-20 left-20 w-36 h-36 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '4s' }}></div>
-          <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute bottom-10 right-10 w-24 h-24 bg-cyan-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '3s' }}></div>
-          <div className="absolute top-1/3 left-1/3 w-20 h-20 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-float" style={{ animationDelay: '5s' }}></div>
+          <div className={`absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '2s', transitionDelay: '0.8s' }}></div>
+          <div className={`absolute top-20 right-20 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '2s', transitionDelay: '1.0s' }}></div>
+          <div className={`absolute bottom-20 left-20 w-36 h-36 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : 'translate-y-10 opacity-0'}`} style={{ animationDelay: '4s', transitionDelay: '1.2s' }}></div>
+          <div className={`absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '1s', transitionDelay: '1.4s' }}></div>
+          <div className={`absolute bottom-10 right-10 w-24 h-24 bg-cyan-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : 'translate-y-10 opacity-0'}`} style={{ animationDelay: '3s', transitionDelay: '1.6s' }}></div>
+          <div className={`absolute top-1/3 left-1/3 w-20 h-20 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-15' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '5s', transitionDelay: '1.8s' }}></div>
         </div>
         
         {/* Minimal depth gradient */}
@@ -127,11 +166,10 @@ const AboutMe = () => {
                   {nameWords.map((word, index) => (
                     <span 
                       key={index}
-                      className="inline-block transform transition-all duration-1000 translate-x-0 translate-y-0 opacity-100 rotate-0"
+                      className={`inline-block transform transition-all duration-1000 ${isLoaded ? 'translate-x-0 translate-y-0 opacity-100 rotate-0' : 'translate-y-10 opacity-0'}`}
                       style={{ 
-                        transitionDelay: `${index * 0.3}s`,
+                        transitionDelay: `${0.5 + index * 0.3}s`,
                         color: '#fff', 
-                        opacity: isLoaded ? 1 : 0,
                         textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
                         WebkitTextStroke: '1px rgba(255,255,255,0.1)'
                       }}
@@ -141,7 +179,7 @@ const AboutMe = () => {
                   ))}
                 </div>
               </h1>
-              <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-white to-blue-200 mx-auto rounded-full transition-all duration-1000 shadow-lg scale-x-100 opacity-100" style={{ transitionDelay: '0.8s', boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}></div>
+              <div className={`w-16 sm:w-24 h-1 bg-gradient-to-r from-white to-blue-200 mx-auto rounded-full transition-all duration-1000 shadow-lg ${isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}`} style={{ transitionDelay: '1.3s', boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}></div>
             </div>
             <div className="mb-8 sm:mb-12">
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl leading-relaxed max-w-5xl mx-auto">
@@ -182,7 +220,7 @@ const AboutMe = () => {
                 </span>
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center transition-all duration-1000 transform translate-y-0 opacity-100" style={{ transitionDelay: '2.5s' }}>
+            <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center transition-all duration-1000 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '2.5s' }}>
               <Link
                 to="/projects"
                 className="w-full sm:w-auto group bg-white/95 hover:bg-white text-blue-600 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:rotate-1 shadow-2xl hover:shadow-3xl border-2 border-transparent hover:border-blue-300 backdrop-blur-sm"
@@ -213,7 +251,7 @@ const AboutMe = () => {
             </div>
             
             {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 translate-y-0 opacity-70" style={{ 
+            <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-70' : 'translate-y-10 opacity-0'}`} style={{ 
               transitionDelay: '3s',
               filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.8))'
             }}>
@@ -231,7 +269,7 @@ const AboutMe = () => {
       </section>
 
       {/* What I Do Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden transform transition-all duration-1000 translate-y-0 opacity-100">
+      <section className={`py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden transform transition-all duration-1000 ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -256,22 +294,33 @@ const AboutMe = () => {
             {skills.map((skill, index) => (
               <div
                 key={skill.title}
-                className="group bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 hover:rotate-2 card-hover border border-gray-100 hover:border-blue-200 relative overflow-hidden translate-y-0 opacity-100"
+                className={`group bg-gradient-to-br from-white to-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 hover:rotate-2 card-hover border border-gray-200 hover:border-teal-300 relative overflow-hidden ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.1}s`,
                   transitionDelay: `${600 + index * 100}ms`
                 }}
               >
                 {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 -z-10"></div>
                 
                 <div className="relative z-10">
-                  <div className="text-blue-600 mb-4 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">{skill.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">{skill.title}</h3>
+                  {/* Icon container with enhanced animation */}
+                  <div className="text-teal-600 mb-4 transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:text-cyan-600">
+                    <div className="p-3 bg-teal-50 rounded-lg w-16 h-16 flex items-center justify-center group-hover:bg-cyan-100 transition-colors duration-300">
+                      {skill.icon}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors duration-300">{skill.title}</h3>
                   <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{skill.description}</p>
                   
                   {/* Animated bottom border */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                  
+                  {/* Corner accent */}
+                  <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-bl-full"></div>
                 </div>
               </div>
             ))}
@@ -280,9 +329,9 @@ const AboutMe = () => {
       </section>
 
       {/* Beyond Coding Section */}
-      <section className="py-20 bg-white relative overflow-hidden transform transition-all duration-1000 translate-y-0 opacity-100">
+      <section className={`py-20 bg-gradient-to-br from-white to-gray-100 relative overflow-hidden transform transition-all duration-1000 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600"></div>
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-500 via-cyan-500 to-blue-500"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -299,18 +348,31 @@ const AboutMe = () => {
             {beyondCoding.map((item, index) => (
               <div
                 key={item.title}
-                className="group text-center p-8 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 hover:from-purple-50 hover:to-pink-50 hover:shadow-lg transition-all duration-500 card-hover transform hover:-translate-y-2 hover:scale-105 border border-transparent hover:border-purple-200 translate-y-0 opacity-100"
+                className={`group text-center p-8 rounded-xl bg-gradient-to-br from-white to-gray-50 hover:from-cyan-50 hover:to-blue-50 hover:shadow-lg transition-all duration-500 card-hover transform hover:-translate-y-2 hover:scale-105 border border-gray-200 hover:border-cyan-300 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.15}s`,
                   transitionDelay: `${900 + index * 100}ms`
                 }}
               >
-                <div className="text-blue-600 group-hover:text-purple-600 mb-4 flex justify-center transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-6">{item.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 group-hover:text-purple-700 mb-3 transition-colors duration-300">{item.title}</h3>
+                {/* Enhanced icon container */}
+                <div className="relative mb-4 flex justify-center">
+                  <div className="absolute w-16 h-16 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300 transform group-hover:scale-125"></div>
+                  <div className="text-teal-600 group-hover:text-cyan-600 flex justify-center transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-6 z-10">
+                    <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg transition-shadow duration-300">
+                      {item.icon}
+                    </div>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-cyan-700 mb-3 transition-colors duration-300">{item.title}</h3>
                 <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{item.description}</p>
                 
                 {/* Hover glow effect */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10"></div>
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10"></div>
+                
+                {/* Subtle pulse animation on hover */}
+                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-5 transition-opacity duration-500 -z-10">
+                  <div className="absolute inset-0 rounded-xl border-2 border-dashed border-cyan-300 animate-pulse"></div>
+                </div>
               </div>
             ))}
           </div>
@@ -318,17 +380,17 @@ const AboutMe = () => {
       </section>
 
       {/* Call-to-Action Section */}
-      <section className="py-20 bg-white relative overflow-hidden transform transition-all duration-1000 translate-y-0 opacity-100">
+      <section className={`py-20 bg-white relative overflow-hidden transform transition-all duration-1000 ${animatedSections[3] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
 
         {/* Animated background particles */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping" style={{ animationDelay: '0s' }}></div>
-          <div className="absolute top-3/4 right-1/4 w-2 h-2 bg-purple-400 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-indigo-400 rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
+          <div className={`absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping ${animatedSections[3] ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '0s', transitionDelay: '0.5s' }}></div>
+          <div className={`absolute top-3/4 right-1/4 w-2 h-2 bg-purple-400 rounded-full animate-ping ${animatedSections[3] ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '1s', transitionDelay: '0.7s' }}></div>
+          <div className={`absolute top-1/2 left-1/2 w-2 h-2 bg-indigo-400 rounded-full animate-ping ${animatedSections[3] ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '2s', transitionDelay: '0.9s' }}></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-12 transform transition-all duration-1000 hover:scale-105 border border-blue-100 hover:border-purple-200 shadow-lg hover:shadow-2xl translate-y-0 opacity-100 scale-100" style={{ transitionDelay: '800ms' }}>
+          <div className={`bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-12 transform transition-all duration-1000 hover:scale-105 border border-blue-100 hover:border-purple-200 shadow-lg hover:shadow-2xl ${animatedSections[3] ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`} style={{ transitionDelay: '800ms' }}>
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 relative transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '1000ms' }}>
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Ready to Start Your Project?

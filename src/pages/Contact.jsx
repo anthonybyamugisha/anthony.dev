@@ -340,30 +340,41 @@ const Contact = () => {
 
       {/* Additional CTA Section */}
       <section className="bg-gradient-to-br from-gray-50 to-blue-50 py-16 relative overflow-hidden">
-        {/* Floating background elements */}
+
+        {/* Animated background particles */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 left-1/4 w-36 h-36 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '4s' }}></div>
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping" style={{ animationDelay: '0s' }}></div>
+          <div className="absolute top-3/4 right-1/4 w-2 h-2 bg-purple-400 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-indigo-400 rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
         </div>
+        
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Ready to Start Something Amazing?</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Let's turn your vision into reality. I'm excited to learn about your project and 
-            discuss how we can create something extraordinary together.
+          <h2 className="text-3xl font-bold mb-6 text-gray-900 relative">
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Ready to Start Something Amazing?
+            </span>
+          </h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto text-gray-700">
+            Let's collaborate to bring your ideas to life with cutting-edge technology and innovative solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="mailto:byamugishanthony@gmail.com"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold transform hover:scale-105 hover:shadow-lg"
+              className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:-rotate-1 shadow-lg hover:shadow-2xl"
             >
-              Email Me Directly
+              <span className="mr-2">Email Me Directly</span>
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
             </a>
             <Link
               to="/resume"
-              className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 font-semibold transform hover:scale-105 hover:shadow-md"
+              className="group inline-flex items-center border-2 border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600 font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:rotate-1 shadow-md hover:shadow-lg"
             >
-              View Resume
+              <span className="mr-2">View Resume</span>
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
             </Link>
           </div>
         </div>

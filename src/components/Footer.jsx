@@ -35,15 +35,23 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
-      {/* Animated background elements */}
+      {/* Enhanced animated background elements with shimmer effect */}
       <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
-        <div className="absolute top-20 right-20 w-24 h-24 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-10 left-1/3 w-28 h-28 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-float"></div>
+        <div className="absolute top-20 right-20 w-24 h-24 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-10 left-1/3 w-28 h-28 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-float" style={{ animationDelay: '4s' }}></div>
+        
+        {/* Additional shimmering elements */}
+        <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-1/4 left-1/4 w-20 h-20 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-pulse" style={{ animationDelay: '3s' }}></div>
       </div>
+      
+      {/* Shimmer overlay for extra shine */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 animate-shimmer"></div>
+      
       <div className="relative max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center space-y-6">
-          {/* Social Links */}
+          {/* Social Links with enhanced hover effects */}
           <div className="flex space-x-6">
             {socialLinks.map((item) => (
               <a
@@ -51,27 +59,30 @@ const Footer = () => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-100 hover:text-white transition-colors duration-200 transform hover:scale-110"
+                className="text-blue-100 hover:text-white transition-all duration-300 transform hover:scale-125 hover:-translate-y-1 group"
                 aria-label={item.name}
               >
-                {item.icon}
+                <div className="relative">
+                  <div className="absolute inset-0 bg-white rounded-full opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300"></div>
+                  {item.icon}
+                </div>
               </a>
             ))}
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info with enhanced styling */}
           <div className="text-center space-y-2">
-            <p className="text-blue-100">
-              <a href="mailto:byamugishanthony@gmail.com" className="hover:text-white transition-colors duration-200">
+            <p className="text-blue-100 hover:text-white transition-colors duration-300">
+              <a href="mailto:byamugishanthony@gmail.com" className="hover:text-white transition-colors duration-300 hover:underline underline-offset-4">
                 byamugishanthony@gmail.com
               </a>
             </p>
             <p className="text-blue-100">Makerere, Kampala Uganda</p>
           </div>
 
-          {/* Copyright */}
+          {/* Copyright with enhanced styling */}
           <div className="text-center text-blue-100">
-            <p>&copy; {currentYear} Byamugisha Anthony. All rights reserved.</p>
+            <p className="font-medium">&copy; {currentYear} Byamugisha Anthony. All rights reserved.</p>
           </div>
         </div>
       </div>
