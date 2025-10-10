@@ -6,6 +6,7 @@ import Resume from './pages/Resume'
 import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 import ProjectDetail from './pages/ProjectDetail'
+import ImageTest from './components/ImageTest'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:projectId" element={<ProjectDetail />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/image-test" element={<ImageTest />} />
         </Routes>
       </Layout>
     </Router>
