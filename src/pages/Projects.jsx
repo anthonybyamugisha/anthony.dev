@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [currentWord, setCurrentWord] = useState(15); // All words visible
   
   // All sections are visible by default to prevent blank pages
   const visibleSections = {
@@ -10,6 +12,8 @@ const Projects = () => {
     projects: Array.from({length: 20}, (_, i) => i), // Enough indices for all projects
     cta: true
   };
+  
+  const titleWords = ['Each', 'project', 'represents', 'a', 'unique', 'challenge', 'and', 'learning', 'experience.', 'From', 'mobile', 'applications', 'to', 'innovative', 'solutions,', 'explore', 'how', 'I', 'turn', 'ideas', 'into', 'reality.'];
 
   const projects = [
     {
@@ -122,6 +126,27 @@ const Projects = () => {
 
   const filteredProjects = getFilteredProjects();
 
+  // Handle text animations
+  useEffect(() => {
+    setIsLoaded(true)
+    
+    // Animate title words sequentially (similar to About page)
+    const wordTimer = setTimeout(() => {
+      let wordIndex = -1
+      const wordInterval = setInterval(() => {
+        wordIndex++
+        setCurrentWord(wordIndex)
+        if (wordIndex >= titleWords.length - 1) {
+          clearInterval(wordInterval)
+        }
+      }, 100)
+    }, 500)
+    
+    return () => {
+      clearTimeout(wordTimer)
+    }
+  }, [])
+
   return (
     <div className="bg-white min-h-screen">
       {/* Header Section */}
@@ -134,10 +159,34 @@ const Projects = () => {
           <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-6xl font-bold mb-6">My Projects</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Each project represents a unique challenge and learning experience. From mobile applications 
-            to innovative solutions, explore how I turn ideas into reality.
+          <h1 className={`text-4xl sm:text-6xl font-bold mb-6 transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '0.8s' }}>
+            My Projects
+          </h1>
+          <p className={`text-xl max-w-3xl mx-auto transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '1.2s' }}>
+            <span className="flex flex-wrap justify-center gap-1 sm:gap-2">
+              {titleWords.map((word, index) => {
+                const isVisible = index <= currentWord
+                
+                return (
+                  <span 
+                    key={index}
+                    className={`inline-block transition-all duration-700 transform translate-x-0 translate-y-0 opacity-100 rotate-0 ${
+                      ['mobile', 'applications'].includes(word) ? 'text-yellow-300 font-semibold' :
+                      ['innovative', 'solutions'].includes(word) ? 'text-blue-200 font-semibold' :
+                      'text-white'
+                    }`}
+                    style={{ 
+                      transitionDelay: `${index * 0.05}s`,
+                      color: isVisible ? undefined : 'transparent',
+                      textShadow: isVisible ? '1px 1px 6px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4)' : 'none'
+                    }}
+                  >
+                    {word}
+                    {index < titleWords.length - 1 && ' '}
+                  </span>
+                )
+              })}
+            </span>
           </p>
         </div>
       </section>
