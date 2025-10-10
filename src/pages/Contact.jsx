@@ -22,6 +22,22 @@ const Contact = () => {
     cta: true
   }
 
+  useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init({
+      publicKey: 'cPmZrg5wMdFxhficmQoKP',
+      blockHeadless: false,
+      blockList: {
+        list: [],
+        blockMessage: 'The domain is not allowed to send emails'
+      },
+      limitRate: {
+        id: 'app',
+        throttle: 10000
+      }
+    });
+  }, []);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -35,9 +51,10 @@ const Contact = () => {
     setSubmitMessage('')
     
     try {
-      // EmailJS configuration
-      const serviceId = 'service_n77i5mx'        
-      const templateId = 'your_template_id_here' 
+      // EmailJS configuration - REPLACE THESE WITH YOUR ACTUAL VALUES
+      const serviceId = 'service_d2ydqd4'      // Your Gmail service ID
+      const templateId = 'template_ifhviyr'   // Your actual Template ID
+      const publicKey = 'RvjO3VSCohf7OZsGa'  // Your public key
       
       // Template parameters that will be sent to your email
       const templateParams = {
@@ -48,8 +65,12 @@ const Contact = () => {
         to_email: 'byamugishanthony@gmail.com' // Your email address
       }
       
+      console.log('Sending email with parameters:', { serviceId, templateId, publicKey, templateParams });
+      
       // Send email using EmailJS
-      await emailjs.send(serviceId, templateId, templateParams, publicKey)
+      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey)
+      
+      console.log('Email sent successfully:', response);
       
       setIsSubmitting(false)
       setMessageType('success')
@@ -57,6 +78,13 @@ const Contact = () => {
       setFormData({ name: '', email: '', subject: '', message: '' })
     } catch (error) {
       console.error('Email sending failed:', error)
+      console.error('Error details:', {
+        status: error.status,
+        text: error.text,
+        message: error.message,
+        response: error.response
+      });
+      
       setIsSubmitting(false)
       setMessageType('error')
       setSubmitMessage('Sorry, there was an error sending your message. Please try again or email me directly.')
