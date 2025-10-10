@@ -13,6 +13,9 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
   const [messageType, setMessageType] = useState('') // 'success' or 'error'
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [currentWord, setCurrentWord] = useState(25) // All words visible
+  
   // All sections are visible by default to prevent blank pages
   const visibleSections = {
     header: true,
@@ -21,6 +24,8 @@ const Contact = () => {
     social: true,
     cta: true
   }
+  
+  const titleWords = ['I\'m', 'always', 'interested', 'in', 'new', 'opportunities', 'and', 'exciting', 'projects.', 'Whether', 'you', 'have', 'a', 'question,', 'want', 'to', 'discuss', 'a', 'potential', 'collaboration,', 'or', 'just', 'want', 'to', 'say', 'hello,', 'I\'d', 'love', 'to', 'hear', 'from', 'you.']
 
   useEffect(() => {
     // Initialize EmailJS with your public key
@@ -36,6 +41,25 @@ const Contact = () => {
         throttle: 10000
       }
     });
+    
+    // Handle text animations
+    setIsLoaded(true)
+    
+    // Animate title words sequentially (similar to About page)
+    const wordTimer = setTimeout(() => {
+      let wordIndex = -1
+      const wordInterval = setInterval(() => {
+        wordIndex++
+        setCurrentWord(wordIndex)
+        if (wordIndex >= titleWords.length - 1) {
+          clearInterval(wordInterval)
+        }
+      }, 100)
+    }, 500)
+    
+    return () => {
+      clearTimeout(wordTimer)
+    }
   }, []);
 
   const handleChange = (e) => {
@@ -167,10 +191,44 @@ const Contact = () => {
           <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
         </div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6" style={{ color: '#fff' }}>Get In Touch</h1>
-          <p className="text-xl max-w-3xl mx-auto" style={{ color: '#fff' }}>
-            I'm always interested in new opportunities and exciting projects. Whether you have a question, 
-            want to discuss a potential collaboration, or just want to say hello, I'd love to hear from you.
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6 transform transition-all duration-1000 translate-y-0 opacity-100 scale-100" style={{ 
+            color: '#fff',
+            opacity: isLoaded ? 1 : 0,
+            transitionDelay: '0.5s',
+            textShadow: '2px 2px 8px rgba(0,0,0,0.3)'
+          }}>
+            Get In Touch
+          </h1>
+          <p className="text-xl max-w-3xl mx-auto transform transition-all duration-1000 translate-y-0 opacity-100" style={{ 
+            color: '#fff',
+            opacity: isLoaded ? 1 : 0,
+            transitionDelay: '0.8s',
+            textShadow: '1px 1px 4px rgba(0,0,0,0.3)'
+          }}>
+            <span className="flex flex-wrap justify-center gap-1 sm:gap-2">
+              {titleWords.map((word, index) => {
+                const isVisible = index <= currentWord
+                
+                return (
+                  <span 
+                    key={index}
+                    className={`inline-block transition-all duration-700 transform translate-x-0 translate-y-0 opacity-100 rotate-0 ${
+                      ['opportunities', 'projects'].includes(word) ? 'text-yellow-300 font-semibold' :
+                      ['collaboration'].includes(word) ? 'text-blue-200 font-semibold' :
+                      'text-white'
+                    }`}
+                    style={{ 
+                      transitionDelay: `${index * 0.05}s`,
+                      color: isVisible ? undefined : 'transparent',
+                      textShadow: isVisible ? '1px 1px 6px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4)' : 'none'
+                    }}
+                  >
+                    {word}
+                    {index < titleWords.length - 1 && ' '}
+                  </span>
+                )
+              })}
+            </span>
           </p>
         </div>
       </section>
