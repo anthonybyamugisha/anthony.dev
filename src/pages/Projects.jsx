@@ -2,41 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Projects = () => {
-  const [visibleSections, setVisibleSections] = useState({
-    header: false,
-    projects: [],
-    cta: false
-  });
   const [filter, setFilter] = useState('All');
-
-  useEffect(() => {
-    // Initialize all projects as visible from the start
-    const initialVisibleProjects = getFilteredProjects().map((_, index) => index);
-    
-    const timeouts = [
-      setTimeout(() => setVisibleSections(prev => ({ ...prev, header: true })), 100),
-      setTimeout(() => setVisibleSections(prev => ({ ...prev, projects: initialVisibleProjects })), 300),
-      setTimeout(() => setVisibleSections(prev => ({ ...prev, cta: true })), 800)
-    ];
-    
-    return () => timeouts.forEach(clearTimeout);
-  }, []);
-
-  // Reset visibility when filter changes
-  useEffect(() => {
-    const filtered = getFilteredProjects();
-    const visibleProjects = filtered.map((_, index) => index);
-    
-    setVisibleSections(prev => ({
-      ...prev,
-      projects: visibleProjects
-    }));
-  }, [filter]);
+  
+  // All sections are visible by default to prevent blank pages
+  const visibleSections = {
+    header: true,
+    projects: Array.from({length: 20}, (_, i) => i), // Enough indices for all projects
+    cta: true
+  };
 
   const projects = [
     {
       id: 1,
-      title: 'VendorSync - Inventory Management System',
+      title: 'VendorSync  Inventory Management System',
       description: 'A comprehensive inventory management solution for vendors with real-time stock tracking, automated ordering, and predictive analytics.',
       longDescription: 'VendorSync is a sophisticated inventory management platform designed for vendors to streamline their operations. Built with Flutter and Firebase, it provides real-time stock monitoring, automated replenishment orders, and predictive analytics to optimize inventory levels. The system integrates with supplier networks to ensure seamless ordering processes and prevent stockouts. The mobile-first approach ensures vendors can manage their inventory from anywhere.',
       techStack: ['Flutter', 'Dart', 'Firebase Firestore', 'Firebase Auth'],
@@ -49,7 +27,7 @@ const Projects = () => {
         'Cross-platform mobile app',
         'Vendor confirmation workflow'
       ],
-      github: 'https://github.com/anthonybyamugisha',
+      github: 'https://github.com/anthonybyamugisha/',
       image: '/images/Vendor sync.jpeg',
       category: 'Mobile App'
     },
@@ -64,67 +42,69 @@ const Projects = () => {
         'Progress tracking and achievements',
         'Beautiful and intuitive UI/UX design'
       ],
-      github: 'https://github.com/anthonybyamugisha',
+      github: 'https://github.com/anthonybyamugisha/',
       image: '/images/forex giants mobile app.jpeg',
       category: 'Mobile App'
     },
     {
       id: 3,
-      title: 'E-Commerce Frontend',
-      description: 'A modern e-commerce frontend built with React and Redux for a seamless shopping experience.',
-      longDescription: 'A responsive e-commerce frontend solution built with React, Redux, and Tailwind CSS. This project features a modern UI/UX design with smooth animations, product filtering, cart functionality, and user authentication. The application is optimized for performance and provides an intuitive shopping experience across all device sizes.',
-      techStack: ['React', 'Redux', 'Tailwind CSS', 'JavaScript'],
+      title: 'All Organic Honey Website',
+      description: 'A responsive website for All Organic Honey built with React, HTML, and Tailwind CSS.',
+      longDescription: 'A beautiful and responsive website for All Organic Honey. Built with React for the frontend, HTML for structure, and Tailwind CSS for styling. The site showcases organic honey products with detailed descriptions, nutritional information, and ordering options. Designed with a nature-inspired color palette to reflect the organic and natural qualities of the honey products.',
+      techStack: ['React', 'HTML', 'Tailwind CSS'],
       features: [
         'Responsive design for all devices',
-        'Product filtering and search',
-        'Shopping cart functionality',
-        'User authentication',
-        'Wishlist management',
-        'Order history tracking'
+        'Product showcase with detailed descriptions',
+        'Nutritional information display',
+        'Online ordering system',
+        'Contact form for inquiries',
+        'Nature-inspired UI/UX design'
       ],
-      github: 'https://github.com/anthonybyamugisha',
-      image: 'https://placehold.co/600x400/3b82f6/ffffff?text=E-Commerce+Frontend',
+      github: 'https://github.com/anthonybyamugisha/',
+      image: '/images/all organic  honey.jpeg',
       category: 'Frontend'
     },
     {
-      id: 4,
-      title: 'Task Management API',
-      description: 'A RESTful API for task management with user authentication and real-time updates.',
-      longDescription: 'A robust backend API built with Node.js, Express, and MongoDB for task management applications. Features include user authentication with JWT, real-time updates with WebSockets, task categorization, due date reminders, and team collaboration features. The API follows RESTful principles and includes comprehensive documentation.',
-      techStack: ['Node.js', 'Express', 'MongoDB', 'JWT'],
+      id: 5,
+      title: 'Hotel Management System',
+      description: 'A comprehensive hotel management system with advanced reporting capabilities built with Django, HTML, CSS, and MySQL.',
+      longDescription: 'A comprehensive hotel management system designed with a strong focus on advanced reporting capabilities. Built with Django for the backend, HTML and CSS for the frontend, and MySQL for the database. The system excels at generating detailed financial, occupancy, and operational reports that provide valuable insights for hotel management.',
+      techStack: ['Django', 'HTML', 'CSS', 'MySQL'],
       features: [
-        'User authentication with JWT',
-        'RESTful API design',
-        'Real-time updates with WebSockets',
-        'Task categorization and tagging',
-        'Due date reminders',
-        'Team collaboration features'
+        'Advanced Reporting Engine',
+        'Financial Performance Analytics',
+        'Occupancy Rate Monitoring',
+        'Guest Behavior Analysis',
+        'Staff Performance Tracking',
+        'Inventory Management Reports',
+        'Reservation Trend Analysis'
       ],
-      github: 'https://github.com/anthonybyamugisha',
-      image: 'https://placehold.co/600x400/10b981/ffffff?text=Task+API',
-      category: 'Backend'
+      github: 'https://github.com/anthonybyamugisha/',
+      image: '/images/hotel management system.jpeg',
+      category: 'Full Stack'
     },
     {
-      id: 5,
-      title: 'Social Media Platform',
-      description: 'A full-stack social media application with real-time messaging and content sharing.',
-      longDescription: 'A comprehensive social media platform built with the MERN stack (MongoDB, Express, React, Node.js). Features include user profiles, friend connections, real-time messaging, content sharing with reactions, notifications, and a news feed algorithm. The application is designed for scalability and includes both frontend and backend components.',
-      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'Socket.io'],
+      id: 6,
+      title: 'AI Chatbot Solutions',
+      description: 'Intelligent chatbots built and trained on specific information to respond to user questions and embedded in websites.',
+      longDescription: 'Custom AI chatbot solutions designed and developed to understand and respond to user queries based on specific domain knowledge. These chatbots are trained on targeted information sources to provide accurate and relevant responses. The chatbots can be seamlessly embedded into websites to enhance user experience, provide 24/7 customer support, and automate common inquiries. Built with natural language processing and machine learning technologies.',
+      techStack: ['Jotform', 'Web Integration'],
       features: [
-        'User profiles and authentication',
-        'Friend connections and messaging',
-        'Content sharing with reactions',
-        'Real-time notifications',
-        'News feed algorithms',
-        'Media upload and storage'
+        'Custom chatbot training on domain-specific data',
+        'Natural language understanding and processing',
+        'Website integration capabilities',
+        '24/7 automated customer support',
+        'Conversation flow design',
+        'Analytics and usage reporting',
+        'Multi-platform deployment'
       ],
-      github: 'https://github.com/anthonybyamugisha',
-      image: 'https://placehold.co/600x400/8b5cf6/ffffff?text=Social+Platform',
-      category: 'Full Stack'
+      github: 'https://github.com/anthonybyamugisha/',
+      image: '/images/ai chat bot.jpeg',
+      category: 'Chatbots'
     }
   ];
 
-  const categories = ['All', 'Mobile App', 'Frontend', 'Backend', 'Full Stack'];
+  const categories = ['All', 'Mobile App', 'Frontend', 'Full Stack', 'Chatbots'];
   
   const getFilteredProjects = () => {
     if (filter === 'All') {
@@ -145,9 +125,7 @@ const Projects = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Header Section */}
-      <section className={`bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white py-20 relative overflow-hidden transition-all duration-1000 ${
-        visibleSections.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      }`}>
+      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white py-20 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
@@ -156,12 +134,8 @@ const Projects = () => {
           <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className={`text-4xl sm:text-6xl font-bold mb-6 transition-all duration-1000 delay-200 ${
-            visibleSections.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}>My Projects</h1>
-          <p className={`text-xl max-w-3xl mx-auto transition-all duration-1000 delay-400 ${
-            visibleSections.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}>
+          <h1 className="text-4xl sm:text-6xl font-bold mb-6">My Projects</h1>
+          <p className="text-xl max-w-3xl mx-auto">
             Each project represents a unique challenge and learning experience. From mobile applications 
             to innovative solutions, explore how I turn ideas into reality.
           </p>
@@ -209,127 +183,124 @@ const Projects = () => {
               <p className="text-gray-500">There are no projects in this category yet. Check back soon!</p>
             </div>
           ) : (
-            <div className="grid gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project, index) => (
-                <React.Fragment key={project.id}>
-                  <div
-                    className={`flex flex-col ${
-                      index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                    } items-center gap-8 lg:gap-16 transition-all duration-1000 ${
-                      visibleSections.projects.includes(index) 
-                        ? 'opacity-100 translate-y-0' 
-                        : 'opacity-0 translate-y-20'
-                    }`}
-                  >
-                    {/* Project Image */}
-                    <div className="w-full lg:w-1/2">
-                      <div className="relative group transform transition-all duration-500 hover:scale-105">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl transform rotate-3 opacity-20 group-hover:rotate-6 transition-all duration-500"></div>
-                        <div className="relative bg-gradient-to-br from-blue-400 via-purple-500 to-indigo-500 rounded-2xl p-1 shadow-2xl hover:shadow-3xl transition-all duration-500">
-                          <div className="bg-white rounded-xl overflow-hidden">
-                            <img 
-                              src={project.image}
-                              alt={project.title}
-                              className="w-full h-80 object-contain transition-transform duration-500 hover:scale-110 bg-white p-4"
-                              onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = 'https://placehold.co/600x400/3b82f6/ffffff?text=Project+Image';
-                              }}
-                            />
-                          </div>
-                        </div>
+                <div 
+                  key={project.id}
+                  className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden group"
+                >
+                  {/* Project Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    {project.id === 2 ? (
+                      // Special layout for Forex Giants with two images side by side
+                      <div className="flex h-full p-4 gap-2">
+                        <img 
+                          src="/images/forex giants mobile app.jpeg"
+                          alt="Forex Giants Mobile App"
+                          className="w-1/2 h-full object-contain transition-transform duration-500 group-hover:scale-110 bg-white"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = 'https://placehold.co/300x200/3b82f6/ffffff?text=Forex+Giants+1';
+                          }}
+                        />
+                        <img 
+                          src="/images/forex giants image 2.jpeg"
+                          alt="Forex Giants Second View"
+                          className="w-1/2 h-full object-contain transition-transform duration-500 group-hover:scale-110 bg-white"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = 'https://placehold.co/300x200/3b82f6/ffffff?text=Forex+Giants+2';
+                          }}
+                        />
                       </div>
+                    ) : project.id === 5 ? (
+                      // Special layout for Hotel Management System with increased width
+                      <div className="flex h-full p-2 justify-center">
+                        <img 
+                          src="/images/hotel management system.jpeg"
+                          alt="Hotel Management System"
+                          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 bg-white"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = 'https://placehold.co/600x400/3b82f6/ffffff?text=Hotel+Management';
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <img 
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110 bg-white"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = 'https://placehold.co/600x400/3b82f6/ffffff?text=Project+Image';
+                        }}
+                      />
+                    )}
+                  </div>
+                  
+                  {/* Project Content */}
+                  <div className="p-6">
+                    {/* Category Badge */}
+                    <div className="mb-3">
+                      <span className="inline-block bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
+                        {project.category}
+                      </span>
                     </div>
-
-                    {/* Project Content */}
-                    <div className="w-full lg:w-1/2">
-                      <div className={`space-y-6 transition-all duration-1000 ${
-                        visibleSections.projects.includes(index)
-                          ? 'opacity-100 translate-x-0'
-                          : `opacity-0 ${index % 2 === 0 ? 'translate-x-10' : '-translate-x-10'}`
-                      }`}>
-                        {/* Category Badge */}
-                        <div className="transform transition-all duration-500 hover:scale-105">
-                          <span className="inline-block bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full shadow-md">
-                            {project.category}
-                          </span>
-                        </div>
-
-                        {/* Title and Description */}
-                        <div>
-                          <h3 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4 hover:from-blue-600 hover:to-purple-600 transition-all duration-500">{project.title}</h3>
-                          <p className="text-gray-600 text-lg leading-relaxed mb-4">
-                            {project.longDescription}
-                          </p>
-                        </div>
-
-                        {/* Tech Stack */}
-                        <div>
-                          <h4 className="text-lg font-semibold text-gray-900 mb-3">Tech Stack:</h4>
-                          <div className="flex flex-wrap gap-3">
-                            {project.techStack.map((tech, techIndex) => (
-                              <span
-                                key={tech}
-                                className={`bg-gradient-to-r from-gray-100 to-gray-50 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 hover:from-blue-100 hover:to-purple-100 ${
-                                  visibleSections.projects.includes(index)
-                                    ? 'opacity-100 translate-y-0'
-                                    : 'opacity-0 translate-y-3'
-                                }`}
-                                style={{ transitionDelay: `${400 + techIndex * 100}ms` }}
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Key Features */}
-                        <div>
-                          <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Features:</h4>
-                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {project.features.map((feature, featureIndex) => (
-                              <li 
-                                key={featureIndex} 
-                                className={`flex items-start p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 transform hover:scale-102 ${
-                                  visibleSections.projects.includes(index)
-                                    ? 'opacity-100 translate-x-0'
-                                    : 'opacity-0 -translate-x-3'
-                                }`}
-                                style={{ transitionDelay: `${600 + featureIndex * 100}ms` }}
-                              >
-                                <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 shadow-md">
-                                  <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                  </svg>
-                                </div>
-                                <span className="text-gray-700 text-sm font-medium">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                      </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    
+                    {/* Short Description */}
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
+                    
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.techStack.slice(0, 3).map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.techStack.length > 3 && (
+                        <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
+                          +{project.techStack.length - 3}
+                        </span>
+                      )}
+                    </div>
+                    
+                    {/* GitHub Link and View Details Button */}
+                    <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
+                      <Link 
+                        to={`/projects/${project.id}`}
+                        className="inline-flex items-center text-blue-600 hover:text-purple-600 font-semibold transition-colors duration-300"
+                      >
+                        View Details
+                        <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                      <a 
+                        href={project.github} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-300"
+                        aria-label="View on GitHub"
+                      >
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                      </a>
                     </div>
                   </div>
-                
-                  {/* Separator between projects (except after the last project) */}
-                  {index < filteredProjects.length - 1 && (
-                    <div className="relative py-8">
-                      <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                        <div className="w-full border-t border-gray-300"></div>
-                      </div>
-                      <div className="relative flex justify-center">
-                        <span className="bg-gradient-to-br from-gray-50 to-blue-50 px-4 text-sm text-gray-500">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                          </div>
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </React.Fragment>
+                </div>
               ))}
             </div>
           )}
@@ -337,14 +308,12 @@ const Projects = () => {
       </section>
 
       {/* Call to Action */}
-      <section className={`py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden transition-all duration-1000 ${
-        visibleSections.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      }`}>
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
           <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
         </div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-88 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Let's Work Together</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             I'm always excited to collaborate on new projects and bring innovative ideas to life.

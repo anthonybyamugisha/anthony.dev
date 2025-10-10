@@ -3,49 +3,14 @@ import { Link } from 'react-router-dom'
 import anthonyImage from '/images/anthony.jpg'
 
 const AboutMe = () => {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [currentWord, setCurrentWord] = useState(0)
-  const [visibleSections, setVisibleSections] = useState([])
+  const [isLoaded, setIsLoaded] = useState(true)
+  const [currentWord, setCurrentWord] = useState(18) // All words visible
+  
+  // All sections are visible by default to prevent blank pages
+  const visibleSections = [0, 1, 2, 3]
   
   const nameWords = ['BYAMUGISHA', 'ANTHONY']
   const taglineWords = ['Passionate', 'about', 'creating', 'innovative', 'digital', 'solutions', 'and', 'turning', 'ideas', 'into', 'reality.', 'Specializing', 'in', 'modern', 'web', 'technologies', 'and', 'user-centered', 'design.']
-  
-  useEffect(() => {
-    // Trigger loading animation
-    const timer = setTimeout(() => {
-      setIsLoaded(true)
-    }, 100)
-    
-    // Progressive section reveal
-    const revealTimer = setInterval(() => {
-      setVisibleSections(prev => {
-        if (prev.length < 4) {
-          return [...prev, prev.length]
-        } else {
-          clearInterval(revealTimer)
-          return prev
-        }
-      })
-    }, 300)
-    
-    // Animate words flying in
-    const wordTimer = setInterval(() => {
-      setCurrentWord(prev => {
-        if (prev < taglineWords.length - 1) {
-          return prev + 1
-        } else {
-          clearInterval(wordTimer)
-          return prev
-        }
-      })
-    }, 150)
-    
-    return () => {
-      clearTimeout(timer)
-      clearInterval(wordTimer)
-      clearInterval(revealTimer)
-    }
-  }, [])
   const skills = [
     {
       title: 'Frontend Development',
@@ -162,13 +127,7 @@ const AboutMe = () => {
                   {nameWords.map((word, index) => (
                     <span 
                       key={index}
-                      className={`inline-block transform transition-all duration-1000 ${
-                        isLoaded 
-                          ? 'translate-x-0 translate-y-0 opacity-100 rotate-0' 
-                          : index === 0 
-                            ? '-translate-x-full -translate-y-20 opacity-0 -rotate-45' 
-                            : 'translate-x-full translate-y-20 opacity-0 rotate-45'
-                      }`}
+                      className="inline-block transform transition-all duration-1000 translate-x-0 translate-y-0 opacity-100 rotate-0"
                       style={{ 
                         transitionDelay: `${index * 0.3}s`,
                         color: '#fff', 
@@ -182,9 +141,7 @@ const AboutMe = () => {
                   ))}
                 </div>
               </h1>
-              <div className={`w-16 sm:w-24 h-1 bg-gradient-to-r from-white to-blue-200 mx-auto rounded-full transition-all duration-1000 shadow-lg ${
-                isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
-              }`} style={{ transitionDelay: '0.8s', boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}></div>
+              <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-white to-blue-200 mx-auto rounded-full transition-all duration-1000 shadow-lg scale-x-100 opacity-100" style={{ transitionDelay: '0.8s', boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}></div>
             </div>
             <div className="mb-8 sm:mb-12">
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl leading-relaxed max-w-5xl mx-auto">
@@ -206,11 +163,7 @@ const AboutMe = () => {
                     return (
                       <span 
                         key={index}
-                        className={`inline-block transition-all duration-700 transform ${
-                          isVisible 
-                            ? 'translate-x-0 translate-y-0 opacity-100 rotate-0' 
-                            : transformClass
-                        } ${
+                        className={`inline-block transition-all duration-700 transform translate-x-0 translate-y-0 opacity-100 rotate-0 ${
                           ['innovative', 'digital', 'solutions'].includes(word) ? 'text-yellow-300 font-semibold' :
                           ['modern', 'web', 'technologies'].includes(word) ? 'text-blue-200 font-semibold' :
                           'text-white'
@@ -229,9 +182,7 @@ const AboutMe = () => {
                 </span>
               </p>
             </div>
-            <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center transition-all duration-1000 transform ${
-              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-            }`} style={{ transitionDelay: '2.5s' }}>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center transition-all duration-1000 transform translate-y-0 opacity-100" style={{ transitionDelay: '2.5s' }}>
               <Link
                 to="/projects"
                 className="w-full sm:w-auto group bg-white/95 hover:bg-white text-blue-600 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:rotate-1 shadow-2xl hover:shadow-3xl border-2 border-transparent hover:border-blue-300 backdrop-blur-sm"
@@ -262,9 +213,7 @@ const AboutMe = () => {
             </div>
             
             {/* Scroll indicator */}
-            <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 ${
-              isLoaded ? 'translate-y-0 opacity-70' : 'translate-y-10 opacity-0'
-            }`} style={{ 
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 translate-y-0 opacity-70" style={{ 
               transitionDelay: '3s',
               filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.8))'
             }}>
@@ -282,9 +231,7 @@ const AboutMe = () => {
       </section>
 
       {/* What I Do Section */}
-      <section className={`py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden transform transition-all duration-1000 ${
-        visibleSections.includes(0) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-      }`}>
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden transform transition-all duration-1000 translate-y-0 opacity-100">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -295,16 +242,12 @@ const AboutMe = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-block">
-              <h2 className={`text-3xl sm:text-4xl font-bold text-gray-900 mb-4 relative transform transition-all duration-1000 ${
-                visibleSections.includes(0) ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-              }`} style={{ transitionDelay: '200ms' }}>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 relative transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '200ms' }}>
                 What I Do
                 <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 transform scale-x-0 transition-transform duration-700 group-hover:scale-x-100"></div>
               </h2>
             </div>
-            <p className={`text-xl text-gray-600 max-w-3xl mx-auto transform transition-all duration-1000 hover:text-gray-800 ${
-              visibleSections.includes(0) ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-            }`} style={{ transitionDelay: '400ms' }}>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto transform transition-all duration-1000 hover:text-gray-800 translate-y-0 opacity-100" style={{ transitionDelay: '400ms' }}>
               I specialize in building modern, scalable solutions across multiple platforms
             </p>
           </div>
@@ -313,9 +256,7 @@ const AboutMe = () => {
             {skills.map((skill, index) => (
               <div
                 key={skill.title}
-                className={`group bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 hover:rotate-2 card-hover border border-gray-100 hover:border-blue-200 relative overflow-hidden ${
-                  visibleSections.includes(0) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                }`}
+                className="group bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 hover:rotate-2 card-hover border border-gray-100 hover:border-blue-200 relative overflow-hidden translate-y-0 opacity-100"
                 style={{ 
                   animationDelay: `${index * 0.1}s`,
                   transitionDelay: `${600 + index * 100}ms`
@@ -339,23 +280,17 @@ const AboutMe = () => {
       </section>
 
       {/* Beyond Coding Section */}
-      <section className={`py-20 bg-white relative overflow-hidden transform transition-all duration-1000 ${
-        visibleSections.includes(1) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-      }`} style={{ transitionDelay: '300ms' }}>
+      <section className="py-20 bg-white relative overflow-hidden transform transition-all duration-1000 translate-y-0 opacity-100">
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className={`text-3xl sm:text-4xl font-bold text-gray-900 mb-4 relative inline-block transform transition-all duration-1000 ${
-              visibleSections.includes(1) ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-            }`} style={{ transitionDelay: '500ms' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 relative inline-block transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '500ms' }}>
               Beyond Coding
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"></div>
             </h2>
-            <p className={`text-xl text-gray-600 max-w-3xl mx-auto transform transition-all duration-1000 hover:text-gray-800 ${
-              visibleSections.includes(1) ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-            }`} style={{ transitionDelay: '700ms' }}>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto transform transition-all duration-1000 hover:text-gray-800 translate-y-0 opacity-100" style={{ transitionDelay: '700ms' }}>
               My commitment to growth and community extends beyond writing code
             </p>
           </div>
@@ -364,9 +299,7 @@ const AboutMe = () => {
             {beyondCoding.map((item, index) => (
               <div
                 key={item.title}
-                className={`group text-center p-8 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 hover:from-purple-50 hover:to-pink-50 hover:shadow-lg transition-all duration-500 card-hover transform hover:-translate-y-2 hover:scale-105 border border-transparent hover:border-purple-200 ${
-                  visibleSections.includes(1) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                }`}
+                className="group text-center p-8 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 hover:from-purple-50 hover:to-pink-50 hover:shadow-lg transition-all duration-500 card-hover transform hover:-translate-y-2 hover:scale-105 border border-transparent hover:border-purple-200 translate-y-0 opacity-100"
                 style={{ 
                   animationDelay: `${index * 0.15}s`,
                   transitionDelay: `${900 + index * 100}ms`
@@ -385,9 +318,7 @@ const AboutMe = () => {
       </section>
 
       {/* Call-to-Action Section */}
-      <section className={`py-20 bg-white relative overflow-hidden transform transition-all duration-1000 ${
-        visibleSections.includes(2) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-      }`} style={{ transitionDelay: '600ms' }}>
+      <section className="py-20 bg-white relative overflow-hidden transform transition-all duration-1000 translate-y-0 opacity-100">
 
         {/* Animated background particles */}
         <div className="absolute inset-0">
@@ -397,26 +328,18 @@ const AboutMe = () => {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className={`bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-12 transform transition-all duration-1000 hover:scale-105 border border-blue-100 hover:border-purple-200 shadow-lg hover:shadow-2xl ${
-            visibleSections.includes(2) ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-10 opacity-0 scale-95'
-          }`} style={{ transitionDelay: '800ms' }}>
-            <h2 className={`text-3xl sm:text-4xl font-bold mb-6 text-gray-900 relative transform transition-all duration-1000 ${
-              visibleSections.includes(2) ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-            }`} style={{ transitionDelay: '1000ms' }}>
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-12 transform transition-all duration-1000 hover:scale-105 border border-blue-100 hover:border-purple-200 shadow-lg hover:shadow-2xl translate-y-0 opacity-100 scale-100" style={{ transitionDelay: '800ms' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 relative transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '1000ms' }}>
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Ready to Start Your Project?
               </span>
             </h2>
-            <p className={`text-xl mb-8 max-w-3xl mx-auto text-gray-700 transform transition-all duration-1000 hover:text-gray-900 ${
-              visibleSections.includes(2) ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-            }`} style={{ transitionDelay: '1200ms' }}>
+            <p className="text-xl mb-8 max-w-3xl mx-auto text-gray-700 transform transition-all duration-1000 hover:text-gray-900 translate-y-0 opacity-100" style={{ transitionDelay: '1200ms' }}>
               Let's collaborate to bring your ideas to life with cutting-edge technology and innovative solutions.
             </p>
             <Link
               to="/contact"
-              className={`group inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:-rotate-1 shadow-lg hover:shadow-2xl ${
-                visibleSections.includes(2) ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-              }`}
+              className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:-rotate-1 shadow-lg hover:shadow-2xl translate-y-0 opacity-100"
               style={{ transitionDelay: '1400ms' }}
             >
               <span className="mr-2">Let's Talk</span>

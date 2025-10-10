@@ -2,32 +2,10 @@ import React, { useEffect, useState } from 'react'
 import anthonyImage from '/images/anthony.jpg'
 
 const Resume = () => {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [visibleSections, setVisibleSections] = useState([])
-
-  useEffect(() => {
-    // Trigger loading animation
-    const timer = setTimeout(() => {
-      setIsLoaded(true)
-    }, 100)
-
-    // Progressive section reveal
-    const revealTimer = setInterval(() => {
-      setVisibleSections(prev => {
-        if (prev.length < 6) {
-          return [...prev, prev.length]
-        } else {
-          clearInterval(revealTimer)
-          return prev
-        }
-      })
-    }, 200)
-
-    return () => {
-      clearTimeout(timer)
-      clearInterval(revealTimer)
-    }
-  }, [])
+  const [isLoaded, setIsLoaded] = useState(true)
+  
+  // All sections are visible by default to prevent blank pages
+  const visibleSections = [0, 1, 2, 3, 4, 5]
   const education = [
     {
       period: '2024-Present',
@@ -131,18 +109,14 @@ const Resume = () => {
           </div>
           
           <div className="text-center pr-16 md:pr-20 lg:pr-24">
-            <h1 className={`text-4xl sm:text-5xl font-bold mb-4 transform transition-all duration-1000 ${
-              isLoaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-10 opacity-0 scale-95'
-            }`} style={{ 
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 transform transition-all duration-1000 translate-y-0 opacity-100 scale-100" style={{ 
               color: '#fff', 
               opacity: isLoaded ? 1 : 0,
               textShadow: '2px 2px 8px rgba(0,0,0,0.3)'
             }}>
               BYAMUGISHA ANTHONY
             </h1>
-            <h2 className={`text-xl sm:text-2xl mb-6 transform transition-all duration-1000 ${
-              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-            }`} style={{ 
+            <h2 className="text-xl sm:text-2xl mb-6 transform transition-all duration-1000 translate-y-0 opacity-100" style={{ 
               color: '#fff', 
               opacity: isLoaded ? 1 : 0,
               transitionDelay: '300ms',
@@ -150,16 +124,12 @@ const Resume = () => {
             }}>
               Aspiring Computer Scientist and Data Enthusiast
             </h2>
-            <div className={`flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 transform transition-all duration-1000 ${
-              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-            }`} style={{ 
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 transform transition-all duration-1000 translate-y-0 opacity-100" style={{ 
               color: '#fff', 
               opacity: isLoaded ? 1 : 0,
               transitionDelay: '600ms'
             }}>
-              <div className={`flex items-center space-x-2 transform transition-all duration-500 hover:scale-105 ${
-                isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-              }`} style={{ transitionDelay: '800ms' }}>
+              <div className="flex items-center space-x-2 transform transition-all duration-500 hover:scale-105 translate-x-0 opacity-100" style={{ transitionDelay: '800ms' }}>
                 <svg className="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
@@ -191,9 +161,7 @@ const Resume = () => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Personal Statement */}
-        <section className={`mb-12 transform transition-all duration-1000 ${
-          visibleSections.includes(0) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`}>
+        <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
             Personal Statement
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
@@ -213,9 +181,7 @@ const Resume = () => {
         </section>
 
         {/* Education Timeline */}
-        <section className={`mb-12 transform transition-all duration-1000 ${
-          visibleSections.includes(1) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`} style={{ transitionDelay: '200ms' }}>
+        <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
             Education Timeline
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
@@ -250,9 +216,7 @@ const Resume = () => {
         </section>
 
         {/* Awards and Honors */}
-        <section className={`mb-12 transform transition-all duration-1000 ${
-          visibleSections.includes(2) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`} style={{ transitionDelay: '400ms' }}>
+        <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
             Outstanding Academic Achievements
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
@@ -300,9 +264,7 @@ const Resume = () => {
         </section>
 
         {/* Skills */}
-        <section className={`mb-12 transform transition-all duration-1000 ${
-          visibleSections.includes(3) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`} style={{ transitionDelay: '600ms' }}>
+        <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
             Technical Expertise
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
@@ -367,9 +329,7 @@ const Resume = () => {
         </section>
 
         {/* Languages */}
-        <section className={`mb-12 transform transition-all duration-1000 ${
-          visibleSections.includes(4) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`} style={{ transitionDelay: '800ms' }}>
+        <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
             Languages
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
@@ -409,9 +369,7 @@ const Resume = () => {
         </section>
 
         {/* References */}
-        <section className={`mt-12 transform transition-all duration-1000 ${
-          visibleSections.includes(5) ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`} style={{ transitionDelay: '1000ms' }}>
+        <section className="mt-12 transform transition-all duration-1000 translate-y-0 opacity-100">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
             References
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
