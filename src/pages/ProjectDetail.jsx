@@ -12,7 +12,7 @@ const ProjectDetail = () => {
       id: 1,
       title: 'VendorSync - Inventory Management System',
       description: 'A comprehensive inventory management solution for vendors with real-time stock tracking, automated ordering, and predictive analytics.',
-      longDescription: 'VendorSync is a sophisticated inventory management platform designed for vendors to streamline their operations. Built with Flutter and Firebase, it provides real-time stock monitoring, automated replenishment orders, and predictive analytics to optimize inventory levels. The system integrates with supplier networks to ensure seamless ordering processes and prevent stockouts. The mobile-first approach ensures vendors can manage their inventory from anywhere.',
+      longDescription: 'VendorSync is a data driven inventory management platform designed for vendors to streamline their operations. Built with Flutter and Firebase, it provides real-time stock monitoring, automated replenishment orders, and predictive analytics to optimize inventory levels. The system integrates with supplier networks to ensure seamless ordering processes and prevent stockouts. The mobile-first approach ensures vendors can manage their inventory from anywhere.',
       detailedDescription: `VendorSync addresses the critical need for efficient inventory management in today's fast-paced retail environment. The application features:
 
 • Real-time inventory tracking with instant updates across all devices
