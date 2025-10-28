@@ -72,21 +72,6 @@ const Resume = () => {
     { language: 'Luganda', proficiency: 'Proficient', level: 4 }
   ]
 
-  const references = [
-    {
-      name: 'Byamugisha Africano',
-      title: 'Manager – MIS & Data Analytics',
-      company: 'Rural Digital Media (RDM) Africa',
-      phone: '0706107619'
-    },
-    {
-      name: 'Engineer Herbert Nyakoojo',
-      title: 'Software Engineer',
-      company: 'MTN Uganda',
-      phone: '+256 772123174'
-    }
-  ]
-
   // Handle scroll animations
   useEffect(() => {
     setIsLoaded(true)
@@ -444,41 +429,6 @@ const Resume = () => {
                     ))}
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* References */}
-        <section className="mt-12 transform transition-all duration-1000 translate-y-0 opacity-100">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
-            References
-            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {references.map((ref, index) => (
-              <div 
-                key={index} 
-                className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group relative overflow-hidden mobile-card"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative z-10">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">{ref.name}</h4>
-                  <p className="text-blue-600 font-medium mb-1 group-hover:text-blue-700 transition-colors duration-300">{ref.title}</p>
-                  <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">{ref.company}</p>
-                  <div className="flex items-center space-x-2 text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                    </svg>
-                    <span className="text-sm">{ref.phone}</span>
-                  </div>
-                </div>
-                
-                {/* Animated border */}
-                <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-500"></div>
               </div>
             ))}
           </div>

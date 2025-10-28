@@ -13,18 +13,77 @@ const ProjectDetail = () => {
       title: 'VendorSync - Inventory Management System',
       description: 'A comprehensive inventory management solution for vendors with real-time stock tracking, automated ordering, and predictive analytics.',
       longDescription: 'VendorSync is a data driven inventory management platform designed for vendors to streamline their operations. Built with Flutter and Firebase, it provides real-time stock monitoring, automated replenishment orders, and predictive analytics to optimize inventory levels. The system integrates with supplier networks to ensure seamless ordering processes and prevent stockouts. The mobile-first approach ensures vendors can manage their inventory from anywhere.',
-      detailedDescription: `VendorSync addresses the critical need for efficient inventory management in today's fast-paced retail environment. The application features:
+      detailedDescription: `<h3>Executive Summary</h3>
+<p>[Brief overview of the project highlighting key engineering achievements and business impact]</p>
 
-• Real-time inventory tracking with instant updates across all devices
-• Automated reorder points based on sales trends and seasonal patterns
-• Predictive analytics to forecast demand and optimize stock levels
-• Supplier integration for seamless ordering and delivery scheduling
-• Mobile-first design for on-the-go inventory management
-• Multi-user support with role-based access controls
-• Comprehensive reporting dashboard with customizable metrics
-• Offline functionality for areas with limited connectivity
+<h3>Problem Analysis & Discovery</h3>
+<p><strong>The Core Challenge</strong></p>
+<p>[Description of the primary problem being solved]</p>
 
-The system has been designed with scalability in mind, supporting everything from small local vendors to large retail chains. The intuitive interface reduces training time while the powerful backend ensures accurate inventory management.`,
+<p><strong>Technical Problems:</strong></p>
+<ul>
+  <li>[Technical challenge 1]</li>
+  <li>[Technical challenge 2]</li>
+  <li>[Technical challenge 3]</li>
+</ul>
+
+<p><strong>Business Problems:</strong></p>
+<ul>
+  <li>[Business challenge 1]</li>
+  <li>[Business challenge 2]</li>
+  <li>[Business challenge 3]</li>
+</ul>
+
+<h3>Engineering Solution & Architecture</h3>
+<p><strong>System Design Decisions</strong></p>
+
+<p><strong>1. [Key Architecture Decision]</strong></p>
+<p>Problem: [Brief description of the problem]</p>
+<p>Solution: [Brief description of the solution]</p>
+
+<p><strong>Trade-off Analysis:</strong></p>
+<ul>
+  <li>✅ [Benefit 1]</li>
+  <li>✅ [Benefit 2]</li>
+  <li>❌ [Drawback 1]</li>
+  <li>❌ [Drawback 2]</li>
+</ul>
+
+<h3>Tools & Technologies (With Justification)</h3>
+<table>
+  <tr>
+    <th>Technology</th>
+    <th>Engineering Reason</th>
+  </tr>
+  <tr>
+    <td>[Technology 1]</td>
+    <td>[Reason for choosing this technology]</td>
+  </tr>
+  <tr>
+    <td>[Technology 2]</td>
+    <td>[Reason for choosing this technology]</td>
+  </tr>
+</table>
+
+<h3>Measurable Impact & Validation</h3>
+<p><strong>Performance Metrics:</strong></p>
+<ul>
+  <li>📊 [Metric 1]</li>
+  <li>📊 [Metric 2]</li>
+</ul>
+
+<p><strong>Business Impact:</strong></p>
+<ul>
+  <li>📈 [Business impact 1]</li>
+  <li>📈 [Business impact 2]</li>
+</ul>
+
+<h3>Key Engineering Takeaways</h3>
+<ol>
+  <li>[Key learning 1]</li>
+  <li>[Key learning 2]</li>
+  <li>[Key learning 3]</li>
+</ol>`,
       techStack: ['Flutter', 'Dart', 'Firebase Firestore', 'Firebase Auth'],
       features: [
         'Real-time stock level monitoring',

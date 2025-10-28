@@ -19,17 +19,16 @@ const Projects = () => {
     {
       id: 1,
       title: 'VendorSync  Inventory Management System',
-      description: 'A comprehensive inventory management solution for vendors with real-time stock tracking, automated ordering, and predictive analytics.',
-      longDescription: 'VendorSync is a sophisticated inventory management platform designed for vendors to streamline their operations. Built with Flutter and Firebase, it provides real-time stock monitoring, automated replenishment orders, and predictive analytics to optimize inventory levels. The system integrates with supplier networks to ensure seamless ordering processes and prevent stockouts. The mobile-first approach ensures vendors can manage their inventory from anywhere.',
+      description: 'A comprehensive inventory management solution with real-time tracking and predictive analytics.',
+      longDescription: '[Executive Summary] - [Brief overview of the project highlighting key engineering achievements and business impact]. This project showcases architectural decision-making, real-time data synchronization challenges, predictive modeling, and mobile-first system design.',
       techStack: ['Flutter', 'Dart', 'Firebase Firestore', 'Firebase Auth'],
       features: [
+        '[Key Architecture Decision] - [Brief description of solution]',
+        '[Technical Challenge] - [How it was solved]',
+        '[Business Problem] - [Impact delivered]',
         'Real-time stock level monitoring',
-        'Automated reorder suggestions',
-        'Sales prediction engine',
-        'Supplier integration',
         'Analytics dashboard',
-        'Cross-platform mobile app',
-        'Vendor confirmation workflow'
+        'Cross-platform mobile app'
       ],
       github: 'https://github.com/anthonybyamugisha/',
       image: '/images/Vendor sync.jpeg',
