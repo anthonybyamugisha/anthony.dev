@@ -7,9 +7,16 @@ const NavLink = forwardRef(
       <RouterNavLink
         ref={ref}
         to={to}
-        className={({ isActive, isPending }) =>
-          className + (isActive ? ` ${activeClassName}` : '') + (isPending ? ` ${pendingClassName}` : '')
-        }
+        className={({ isActive, isPending }) => {
+          let combinedClassName = className || '';
+          if (isActive && activeClassName) {
+            combinedClassName += ` ${activeClassName}`;
+          }
+          if (isPending && pendingClassName) {
+            combinedClassName += ` ${pendingClassName}`;
+          }
+          return combinedClassName.trim();
+        }}
         {...props}
       />
     );

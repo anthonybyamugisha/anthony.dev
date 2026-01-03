@@ -261,25 +261,25 @@ These chatbots have successfully reduced customer service response times by up t
   const project = projects.find(p => p.id === parseInt(projectId)) || projects[0];
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen">
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white py-16 relative overflow-hidden">
+      <section className="bg-gradient-primary text-white py-16 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
-          <div className="absolute top-20 right-20 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute bottom-20 left-20 w-36 h-36 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '4s' }}></div>
-          <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-10 left-10 w-32 h-32 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
+          <div className="absolute top-20 right-20 w-40 h-40 bg-secondary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute bottom-20 left-20 w-36 h-36 bg-accent rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '4s' }}></div>
+          <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-destructive rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link to="/projects" className="inline-flex items-center text-blue-200 hover:text-white mb-6 transition-colors duration-300">
+          <Link to="/projects" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6 transition-colors duration-300">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
             Back to Projects
           </Link>
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">{project.title}</h1>
-          <p className="text-xl max-w-3xl">{project.description}</p>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-foreground">{project.title}</h1>
+          <p className="text-xl max-w-3xl text-muted-foreground">{project.description}</p>
         </div>
       </section>
 
@@ -288,11 +288,11 @@ These chatbots have successfully reduced customer service response times by up t
           {/* Project Image */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="glass rounded-xl overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-64 object-contain p-4 bg-white mobile-card"
+                  className="w-full h-64 object-contain p-4 bg-card"
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = 'https://placehold.co/600x400/3b82f6/ffffff?text=Project+Image';
@@ -301,13 +301,13 @@ These chatbots have successfully reduced customer service response times by up t
               </div>
               
               {/* Tech Stack */}
-              <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl shadow-sm">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Technologies Used</h3>
+              <div className="mt-6 glass p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-foreground mb-4">Technologies Used</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.techStack.map((tech, index) => (
                     <span 
                       key={index} 
-                      className="bg-white text-gray-700 px-3 py-1 rounded-full text-sm font-medium border border-gray-200 transition-all duration-300 hover:scale-105"
+                      className="px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20 transition-all duration-300 hover:scale-105"
                     >
                       {tech}
                     </span>
@@ -316,13 +316,13 @@ These chatbots have successfully reduced customer service response times by up t
               </div>
               
               {/* GitHub Link */}
-              <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl shadow-sm">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Repository</h3>
+              <div className="mt-6 glass p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-foreground mb-4">Repository</h3>
                 <a 
                   href={project.github} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-blue-600 hover:text-purple-600 font-semibold transition-colors duration-300"
+                  className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors duration-300"
                 >
                   View on GitHub
                   <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24">
@@ -336,9 +336,9 @@ These chatbots have successfully reduced customer service response times by up t
           {/* Project Details */}
           <div className="lg:col-span-2">
             {/* Detailed Description */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl shadow-sm mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Overview</h2>
-              <div className="prose max-w-none text-gray-700">
+            <div className="glass p-8 rounded-xl mb-8">
+              <h2 className="text-2xl font-bold text-foreground mb-6">Project Overview</h2>
+              <div className="prose max-w-none text-muted-foreground">
                 {project.detailedDescription ? (
                   <div dangerouslySetInnerHTML={{ __html: project.detailedDescription }} />
                 ) : (
@@ -348,15 +348,15 @@ These chatbots have successfully reduced customer service response times by up t
             </div>
             
             {/* Features */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 sm:p-8 rounded-xl shadow-sm mobile-card">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h2>
+            <div className="glass p-6 sm:p-8 rounded-xl">
+              <h2 className="text-2xl font-bold text-foreground mb-6">Key Features</h2>
               <ul className="space-y-3">
                 {project.features.map((feature, index) => (
                   <li key={index} className="flex items-start">
-                    <svg className="w-5 h-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                     </svg>
-                    <span className="text-gray-700">{feature}</span>
+                    <span className="text-muted-foreground">{feature}</span>
                   </li>
                 ))}
               </ul>

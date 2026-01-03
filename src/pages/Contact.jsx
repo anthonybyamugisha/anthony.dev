@@ -180,15 +180,15 @@ const Contact = () => {
   ]
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen">
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white py-16 relative overflow-hidden">
+      <section className="bg-gradient-primary text-white py-16 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
-          <div className="absolute top-20 right-20 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute bottom-20 left-20 w-36 h-36 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '4s' }}></div>
-          <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-10 left-10 w-32 h-32 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
+          <div className="absolute top-20 right-20 w-40 h-40 bg-secondary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute bottom-20 left-20 w-36 h-36 bg-accent rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '4s' }}></div>
+          <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-destructive rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
         </div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 transform transition-all duration-1000 translate-y-0 opacity-100 scale-100" style={{ 
@@ -237,8 +237,8 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Let's Connect</h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Let's Connect</h2>
+            <p className="text-lg text-muted-foreground mb-8">
               Ready to bring your ideas to life? I'm passionate about creating innovative solutions 
               and would love to discuss how we can work together on your next project.
             </p>
@@ -251,20 +251,20 @@ const Contact = () => {
                   className="flex items-center transition-all duration-1000 hover:transform hover:scale-105"
                   style={{ transitionDelay: `${500 + index * 100}ms` }}
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg flex items-center justify-center text-blue-600 shadow-md hover:shadow-lg transition-all duration-300">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center text-primary-foreground shadow-md hover:shadow-lg transition-all duration-300">
                     {info.icon}
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-500">{info.label}</p>
+                    <p className="text-sm font-medium text-muted-foreground">{info.label}</p>
                     {info.link ? (
                       <a 
                         href={info.link} 
-                        className="text-lg text-gray-900 hover:text-blue-600 transition-colors font-medium"
+                        className="text-lg text-foreground hover:text-primary transition-colors font-medium"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-lg text-gray-900 font-medium">{info.value}</p>
+                      <p className="text-lg text-foreground font-medium">{info.value}</p>
                     )}
                   </div>
                 </div>
@@ -273,7 +273,7 @@ const Contact = () => {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Follow Me</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-4">Follow Me</h3>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <a
@@ -281,7 +281,7 @@ const Contact = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gradient-to-r from-gray-100 to-gray-50 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 hover:text-blue-600 transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
+                    className="w-12 h-12 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-primary transition-all duration-300 transform hover:scale-110 hover:shadow-glow"
                     style={{ transitionDelay: `${900 + index * 100}ms` }}
                     aria-label={social.name}
                   >
@@ -294,14 +294,14 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div>
-            <div className="bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 p-8 backdrop-blur-sm">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send a Message</h2>
+            <div className="glass rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 p-8">
+              <h2 className="text-2xl font-bold text-foreground mb-6">Send a Message</h2>
               
               {submitMessage && (
-                <div className={`mb-6 border rounded-lg p-4 transition-all duration-500 transform hover:scale-102 ${
+                <div className={`mb-6 rounded-lg p-4 transition-all duration-500 transform hover:scale-102 ${
                   messageType === 'success' 
-                    ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 text-green-800 shadow-md' 
-                    : 'bg-gradient-to-r from-red-50 to-rose-50 border-red-200 text-red-800 shadow-md'
+                    ? 'bg-green-500/10 border border-green-500/30 text-green-700 dark:text-green-300 shadow-md' 
+                    : 'bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-300 shadow-md'
                 }`}>
                   <p className="font-medium">{submitMessage}</p>
                 </div>
@@ -310,7 +310,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                       Name *
                     </label>
                     <input
@@ -320,12 +320,12 @@ const Contact = () => {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full mobile-form-input px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400 focus:shadow-lg"
+                      className="w-full px-4 py-3 glass focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 focus:shadow-glow"
                       placeholder="Your full name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                       Email *
                     </label>
                     <input
@@ -335,14 +335,14 @@ const Contact = () => {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full mobile-form-input px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400 focus:shadow-lg"
+                      className="w-full px-4 py-3 glass focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 focus:shadow-glow"
                       placeholder="your.email@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
                     Subject *
                   </label>
                   <input
@@ -352,13 +352,13 @@ const Contact = () => {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full mobile-form-input px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400 focus:shadow-lg"
+                    className="w-full px-4 py-3 glass focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 focus:shadow-glow"
                     placeholder="What's this about?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                     Message *
                   </label>
                   <textarea
@@ -368,7 +368,7 @@ const Contact = () => {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full mobile-form-input px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-400 focus:shadow-lg resize-none"
+                    className="w-full px-4 py-3 glass focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 focus:shadow-glow resize-none"
                     placeholder="Tell me about your project or just say hello..."
                   />
                 </div>
@@ -376,11 +376,11 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold transform hover:scale-105 hover:shadow-lg"
+                  className="w-full bg-gradient-primary text-primary-foreground py-3 px-6 rounded-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold transform hover:scale-105 hover:shadow-glow"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-primary-foreground" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
@@ -397,28 +397,28 @@ const Contact = () => {
       </div>
 
       {/* Additional CTA Section */}
-      <section className="bg-gradient-to-br from-gray-50 to-blue-50 py-16 relative overflow-hidden">
+      <section className="bg-background py-16 relative overflow-hidden">
 
         {/* Animated background particles */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping" style={{ animationDelay: '0s' }}></div>
-          <div className="absolute top-3/4 right-1/4 w-2 h-2 bg-purple-400 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-indigo-400 rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full animate-ping" style={{ animationDelay: '0s' }}></div>
+          <div className="absolute top-3/4 right-1/4 w-2 h-2 bg-secondary rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-accent rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
         </div>
         
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6 text-gray-900 relative">
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold mb-6 text-foreground relative">
+            <span className="text-gradient">
               Ready to Start Something Amazing?
             </span>
           </h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto text-gray-700">
+          <p className="text-xl mb-8 max-w-3xl mx-auto text-muted-foreground">
             Let's collaborate to bring your ideas to life with cutting-edge technology and innovative solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="mailto:byamugishanthony@gmail.com"
-              className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:-rotate-1 shadow-lg hover:shadow-2xl"
+              className="group inline-flex items-center bg-gradient-primary text-primary-foreground font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:shadow-glow"
             >
               <span className="mr-2">Email Me Directly</span>
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -427,7 +427,7 @@ const Contact = () => {
             </a>
             <Link
               to="/resume"
-              className="group inline-flex items-center border-2 border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600 font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:rotate-1 shadow-md hover:shadow-lg"
+              className="group inline-flex items-center glass text-foreground font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:shadow-glow"
             >
               <span className="mr-2">View Resume</span>
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

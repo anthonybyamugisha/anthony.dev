@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import anthonyImage from '/images/anthony.jpg'
+import SkillCard from '../components/SkillCard'
+import TimelineItem from '../components/TimelineItem'
+import { Code, Cpu, Zap } from 'lucide-react'
 
 const Resume = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -60,11 +63,26 @@ const Resume = () => {
     }
   ]
 
-  const skills = {
-    programming: ['Python', 'JavaScript', 'Dart'],
-    frameworks: ['Django', 'React', 'Flutter', 'Pandas', 'NumPy', 'Matplotlib'],
-    methodologies: ['Agile']
-  }
+  const skills = [
+    {
+      title: 'Programming Languages',
+      icon: Code,
+      skills: ['Python', 'JavaScript', 'Dart'],
+      delay: 0.1
+    },
+    {
+      title: 'Frameworks & Libraries',
+      icon: Cpu,
+      skills: ['Django', 'React', 'Flutter', 'Pandas', 'NumPy', 'Matplotlib'],
+      delay: 0.2
+    },
+    {
+      title: 'Methodologies',
+      icon: Zap,
+      skills: ['Agile'],
+      delay: 0.3
+    }
+  ]
 
   const languages = [
     { language: 'English', proficiency: 'Proficient', level: 4 },
@@ -252,31 +270,15 @@ const Resume = () => {
             Education Timeline
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
-          <div className="space-y-6">
+          <div className="space-y-2">
             {education.map((edu, index) => (
-              <div 
-                key={index} 
-                className="flex flex-col md:flex-row md:items-center glass border border-border rounded-lg p-6 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group relative overflow-hidden"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="md:w-32 mb-2 md:mb-0 relative z-10">
-                  <span className={`inline-block px-3 py-1 text-sm font-medium rounded-full transition-all duration-300 transform group-hover:scale-110 ${
-                    edu.status === 'Current' ? 'bg-green-100 text-green-800 group-hover:bg-green-200' : 'bg-primary/20 text-primary group-hover:bg-primary/30'
-                  }`}>
-                    {edu.period}
-                  </span>
-                </div>
-                <div className="md:ml-6 flex-1 relative z-10">
-                  <h4 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{edu.institution}</h4>
-                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{edu.degree}</p>
-                </div>
-                
-                {/* Animated border */}
-                <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
-              </div>
+              <TimelineItem
+                key={index}
+                title={edu.degree}
+                institution={edu.institution}
+                period={edu.period}
+                delay={index * 0.1}
+              />
             ))}
           </div>
         </section>
@@ -287,44 +289,17 @@ const Resume = () => {
             Outstanding Academic Achievements
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
-          <div className="grid gap-8">
+          <div className="space-y-2">
             {awards.map((award, index) => (
-              <div key={index} className="relative glass border border-border rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 overflow-hidden group">
-                {/* Animated background elements */}
-                <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-2 right-2 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full blur-xl animate-pulse"></div>
-                  <div className="absolute bottom-2 left-2 w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-full blur-lg animate-bounce" style={{ animationDelay: '1s' }}></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-br from-accent to-primary rounded-full blur-md animate-ping" style={{ animationDelay: '2s' }}></div>
-                </div>
-                
-                {/* Gradient overlay that appears on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                
-                <div className="relative z-10 flex items-start">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-8 h-8 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="ml-4 flex-1">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                      <h4 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{award.title}</h4>
-                      <div className="flex flex-col md:items-end">
-                        <span className="text-sm font-medium text-primary-foreground bg-gradient-primary px-3 py-1 rounded-full shadow-sm">{award.year}</span>
-                        <span className="text-sm text-muted-foreground mt-1 font-medium">{award.institution}</span>
-                      </div>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">{award.description}</p>
-                  </div>
-                </div>
-                
-                {/* Animated border */}
-                <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ padding: '2px' }}>
-                  <div className="w-full h-full bg-card rounded-lg"></div>
-                </div>
-              </div>
+              <TimelineItem
+                key={index}
+                title={award.title}
+                institution={award.institution}
+                period={award.year}
+                description={award.description}
+                achievement="Outstanding Achievement"
+                delay={index * 0.1 + 0.3}
+              />
             ))}
           </div>
         </section>
@@ -335,62 +310,16 @@ const Resume = () => {
             Technical Expertise
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
-          <div className="space-y-6">
-            <div className="relative glass rounded-xl p-6 border border-border hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
-              {/* Animated background elements */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full blur-lg animate-pulse"></div>
-                <div className="absolute bottom-2 left-2 w-8 h-8 bg-gradient-to-br from-secondary to-accent rounded-full blur-md animate-bounce" style={{ animationDelay: '0.5s' }}></div>
-              </div>
-              
-              <div className="relative z-10">
-                <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">Programming Languages</h4>
-                <div className="flex flex-wrap gap-2">
-                  {skills.programming.map((skill) => (
-                    <span key={skill} className="bg-gradient-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative glass rounded-xl p-6 border border-border hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
-              {/* Animated background elements */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-2 left-2 w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full blur-lg animate-ping" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute bottom-2 right-2 w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-full blur-xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-              </div>
-              
-              <div className="relative z-10">
-                <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">Frameworks & Libraries</h4>
-                <div className="flex flex-wrap gap-2">
-                  {skills.frameworks.map((skill) => (
-                    <span key={skill} className="bg-gradient-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative glass rounded-xl p-6 border border-border hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
-              {/* Animated background elements */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full blur-xl animate-bounce" style={{ animationDelay: '2s' }}></div>
-              </div>
-              
-              <div className="relative z-10">
-                <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">Methodologies</h4>
-                <div className="flex flex-wrap gap-2">
-                  {skills.methodologies.map((skill) => (
-                    <span key={skill} className="bg-gradient-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skills.map((skillCategory) => (
+              <SkillCard 
+                key={skillCategory.title}
+                title={skillCategory.title}
+                icon={skillCategory.icon}
+                skills={skillCategory.skills}
+                delay={skillCategory.delay}
+              />
+            ))}
           </div>
         </section>
 
