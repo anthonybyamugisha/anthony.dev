@@ -250,17 +250,15 @@ const Resume = () => {
             Personal Statement
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
-          <div className="glass p-6 rounded-lg shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 border border-border relative overflow-hidden group">
-            {/* Animated background elements */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-2 right-2 w-8 h-8 bg-primary rounded-full blur-md animate-pulse"></div>
-              <div className="absolute bottom-2 left-2 w-6 h-6 bg-secondary rounded-full blur-sm animate-bounce" style={{ animationDelay: '1s' }}></div>
+          <div className="relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
+            <div className="glass p-6 rounded-lg shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 border border-border relative z-10">
+              <p className="text-foreground leading-relaxed text-lg group-hover:text-foreground transition-colors duration-300">
+                Second-year Computer Science student at Makerere University with a strong passion for data science and analytics. 
+                Demonstrated exceptional academic performance throughout my educational journey, coupled with strong problem-solving 
+                skills and an eagerness to learn and apply cutting-edge technologies in real-world scenarios.
+              </p>
             </div>
-            <p className="text-foreground leading-relaxed text-lg relative z-10 group-hover:text-foreground transition-colors duration-300">
-              Second-year Computer Science student at Makerere University with a strong passion for data science and analytics. 
-              Demonstrated exceptional academic performance throughout my educational journey, coupled with strong problem-solving 
-              skills and an eagerness to learn and apply cutting-edge technologies in real-world scenarios.
-            </p>
           </div>
         </section>
 
@@ -331,31 +329,27 @@ const Resume = () => {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {languages.map((lang, index) => (
-              <div key={index} className="relative glass rounded-xl p-6 border border-border hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
-                {/* Animated background elements */}
-                <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-2 right-2 w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full blur-lg animate-pulse" style={{ animationDelay: `${index * 0.3}s` }}></div>
-                  <div className="absolute bottom-2 left-2 w-8 h-8 bg-gradient-to-br from-secondary to-accent rounded-full blur-md animate-bounce" style={{ animationDelay: `${index * 0.5 + 0.5}s` }}></div>
-                </div>
-                
-                <div className="relative z-10 text-center">
-                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">{lang.language}</h4>
-                  <p className="text-sm text-muted-foreground mb-4">{lang.proficiency}</p>
-                  <div className="flex items-center justify-center space-x-1">
-                    {[...Array(5)].map((_, dotIndex) => (
-                      <div
-                        key={dotIndex}
-                        className={`w-3 h-3 rounded-full transition-all duration-500 transform hover:scale-125 ${
-                          dotIndex < lang.level
+              <div key={index} className="relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                <div className="glass rounded-xl p-6 border border-border hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 relative z-10">
+                  <div className="text-center">
+                    <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">{lang.language}</h4>
+                    <p className="text-sm text-muted-foreground mb-4">{lang.proficiency}</p>
+                    <div className="flex items-center justify-center space-x-1">
+                      {[...Array(5)].map((_, dotIndex) => (
+                        <div
+                          key={dotIndex}
+                          className={`w-3 h-3 rounded-full transition-all duration-500 transform hover:scale-125 ${dotIndex < lang.level
                             ? 'bg-gradient-primary shadow-md'
                             : 'bg-muted hover:bg-muted-foreground'
-                        }`}
-                        style={{ 
-                          animationDelay: `${dotIndex * 0.1}s`,
-                          boxShadow: dotIndex < lang.level ? '0 2px 4px rgba(99, 102, 241, 0.3)' : 'none'
-                        }}
-                      ></div>
-                    ))}
+                          }`}
+                          style={{ 
+                            animationDelay: `${dotIndex * 0.1}s`,
+                            boxShadow: dotIndex < lang.level ? '0 2px 4px rgba(99, 102, 241, 0.3)' : 'none'
+                          }}
+                        ></div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
