@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ProjectCard from '../components/ProjectCard';
+import ProjectCard from '../components/ui/ProjectCard';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
@@ -148,21 +148,24 @@ const Projects = () => {
   }, [])
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen">
       {/* Header Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white py-20 relative overflow-hidden">
+      <section className="bg-gradient-primary text-white py-16 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
-          <div className="absolute top-20 right-20 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute bottom-20 left-20 w-36 h-36 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '4s' }}></div>
-          <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
+          {/* Animated background elements */}
+          <div className="absolute inset-0">
+            <div className="absolute top-10 left-10 w-32 h-32 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
+            <div className="absolute top-20 right-20 w-40 h-40 bg-secondary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute bottom-20 left-20 w-36 h-36 bg-accent rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '4s' }}></div>
+            <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-destructive rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
+          </div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className={`text-4xl sm:text-6xl font-bold mb-6 transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '0.8s' }}>
+          <h1 className={`text-4xl sm:text-6xl font-bold mb-6 text-foreground transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '0.8s' }}>
             My Projects
           </h1>
-          <p className={`text-xl max-w-3xl mx-auto transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '1.2s' }}>
+          <p className={`text-xl max-w-3xl mx-auto text-muted-foreground transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '1.2s' }}>
             <span className="flex flex-wrap justify-center gap-1 sm:gap-2">
               {titleWords.map((word, index) => {
                 const isVisible = index <= currentWord
@@ -171,9 +174,9 @@ const Projects = () => {
                   <span 
                     key={index}
                     className={`inline-block transition-all duration-700 transform translate-x-0 translate-y-0 opacity-100 rotate-0 ${
-                      ['mobile', 'applications'].includes(word) ? 'text-yellow-300 font-semibold' :
-                      ['innovative', 'solutions'].includes(word) ? 'text-blue-200 font-semibold' :
-                      'text-white'
+                      ['mobile', 'applications'].includes(word) ? 'text-primary font-semibold' :
+                      ['innovative', 'solutions'].includes(word) ? 'text-accent font-semibold' :
+                      'text-muted-foreground'
                     }`}
                     style={{ 
                       transitionDelay: `${index * 0.05}s`,
@@ -192,7 +195,7 @@ const Projects = () => {
       </section>
 
       {/* Projects Filter */}
-      <section className="py-8 bg-gradient-to-r from-gray-50 to-blue-50">
+      <section className="py-8 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
@@ -201,15 +204,15 @@ const Projects = () => {
                 onClick={() => setFilter(category)}
                 className={`px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 ${
                   filter === category
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
+                    ? 'bg-gradient-primary text-primary-foreground shadow-lg'
+                    : 'glass text-foreground hover:bg-card/80 hover:border-primary/50'
                 }`}
               >
                 <span>{category}</span>
                 <span className={`text-xs px-2 py-1 rounded-full min-w-[24px] text-center ${
                   filter === category
-                    ? 'bg-white text-blue-600 font-bold'
-                    : 'bg-gray-200 text-gray-700'
+                    ? 'bg-primary-foreground text-primary font-bold'
+                    : 'bg-muted text-foreground'
                 }`}>
                   {getCategoryCount(category)}
                 </span>
@@ -220,16 +223,16 @@ const Projects = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+      <section className="py-20 bg-background relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-40 h-40 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
-          <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '3s' }}></div>
+          <div className="absolute top-20 left-10 w-40 h-40 bg-primary/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-32 h-32 bg-secondary/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '3s' }}></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {filteredProjects.length === 0 ? (
             <div className="text-center py-20">
-              <h3 className="text-2xl font-semibold text-gray-700 mb-4">No projects found</h3>
-              <p className="text-gray-500">There are no projects in this category yet. Check back soon!</p>
+              <h3 className="text-2xl font-semibold text-foreground mb-4">No projects found</h3>
+              <p className="text-muted-foreground">There are no projects in this category yet. Check back soon!</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -252,17 +255,17 @@ const Projects = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
+      <section className="py-20 bg-gradient-primary relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
-          <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-10 left-10 w-32 h-32 bg-primary/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
+          <div className="absolute bottom-20 right-20 w-40 h-40 bg-secondary/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
         </div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-88 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Let's Work Together</h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-primary-foreground mb-6">Let's Work Together</h2>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             I'm always excited to collaborate on new projects and bring innovative ideas to life.
           </p>
-          <Link to="/contact" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg transform hover:scale-105 inline-block">
+          <Link to="/contact" className="bg-gradient-primary text-primary-foreground px-8 py-4 rounded-xl hover:shadow-hover transition-all duration-300 font-semibold shadow-lg transform hover:scale-105 inline-block">
             Get In Touch
           </Link>
         </div>

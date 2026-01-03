@@ -68,9 +68,6 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground">
             © {currentYear} Byamugisha Anthony. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground">
-            Crafted with passion
-          </p>
         </div>
       </div>
     </footer>
