@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
+  const isMobile = useIsMobile()
 
   const navItems = [
     { label: "About", path: "/" },
@@ -47,6 +49,7 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop Navigation */}
+            {!isMobile && (
             <div className="hidden md:flex items-center gap-8">
               {navItems.map((item) => (
                 <Link
@@ -60,15 +63,13 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
+            )}
 
             {/* CTA Button - Placeholder for now */}
-            <div className="hidden md:block">
-              <button className="px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground text-sm font-medium hover:shadow-glow transition-shadow duration-300">
-                Let's Talk
-              </button>
-            </div>
+            {/* Removed the Let's Talk button as requested */}
 
             {/* Mobile Menu Button */}
+            {isMobile && (
             <button
               className="md:hidden p-2 rounded-md text-foreground hover:bg-muted transition-colors duration-200"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -76,13 +77,14 @@ const Navbar = () => {
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
+            )}
           </div>
         </nav>
       </motion.header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {isMenuOpen && (
+        {isMenuOpen && isMobile && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -127,9 +129,9 @@ const Navbar = () => {
                   transition={{ delay: 0.4 }}
                   className="pt-4 border-t border-border"
                 >
-                  <button className="w-full px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground font-medium hover:shadow-glow transition-shadow duration-300">
+                  <Link to="/contact" className="w-full py-3 px-4 rounded-lg transition-colors">
                     Let's Talk
-                  </button>
+                  </Link>
                 </motion.div>
               </div>
             </motion.nav>

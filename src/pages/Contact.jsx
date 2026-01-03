@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser'
 import { Link } from 'react-router-dom'
+import { useToast } from '../hooks/useToast'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,8 +12,7 @@ const Contact = () => {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitMessage, setSubmitMessage] = useState('')
-  const [messageType, setMessageType] = useState('') // 'success' or 'error'
+  const { toast } = useToast()
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentWord, setCurrentWord] = useState(25) // All words visible
   
@@ -97,8 +97,11 @@ const Contact = () => {
       console.log('Email sent successfully:', response);
       
       setIsSubmitting(false)
-      setMessageType('success')
-      setSubmitMessage('Thank you for your message! I\'ll get back to you soon.')
+      toast({
+        title: 'Message Sent!',
+        description: 'Thank you for your message! I\'ll get back to you soon.',
+        variant: 'default',
+      })
       setFormData({ name: '', email: '', subject: '', message: '' })
     } catch (error) {
       console.error('Email sending failed:', error)
@@ -110,8 +113,11 @@ const Contact = () => {
       });
       
       setIsSubmitting(false)
-      setMessageType('error')
-      setSubmitMessage('Sorry, there was an error sending your message. Please try again or email me directly.')
+      toast({
+        title: 'Error Sending Message',
+        description: 'Sorry, there was an error sending your message. Please try again or email me directly.',
+        variant: 'destructive',
+      })
     }
   }
 
@@ -297,15 +303,7 @@ const Contact = () => {
             <div className="glass rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 p-8">
               <h2 className="text-2xl font-bold text-foreground mb-6">Send a Message</h2>
               
-              {submitMessage && (
-                <div className={`mb-6 rounded-lg p-4 transition-all duration-500 transform hover:scale-102 ${
-                  messageType === 'success' 
-                    ? 'bg-green-500/10 border border-green-500/30 text-green-700 dark:text-green-300 shadow-md' 
-                    : 'bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-300 shadow-md'
-                }`}>
-                  <p className="font-medium">{submitMessage}</p>
-                </div>
-              )}
+              {/* Toast notifications will be handled by the ToastProvider */}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

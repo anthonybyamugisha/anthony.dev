@@ -7,21 +7,25 @@ import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 import ProjectDetail from './pages/ProjectDetail'
 import ImageTest from './components/ImageTest'
+import { ToastProvider, ToastViewport } from './components/ui/Toast'
 
 function App() {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<AboutMe />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:projectId" element={<ProjectDetail />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/image-test" element={<ImageTest />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <ToastProvider>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<AboutMe />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:projectId" element={<ProjectDetail />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/image-test" element={<ImageTest />} />
+          </Routes>
+        </Layout>
+      </Router>
+      <ToastViewport />
+    </ToastProvider>
   )
 }
 
