@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { Button } from "../components/ui/Button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -70,13 +71,15 @@ const Navbar = () => {
 
             {/* Mobile Menu Button */}
             {isMobile && (
-            <button
-              className="md:hidden p-2 rounded-md text-foreground hover:bg-muted transition-colors duration-200"
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            </Button>
             )}
           </div>
         </nav>
@@ -129,9 +132,11 @@ const Navbar = () => {
                   transition={{ delay: 0.4 }}
                   className="pt-4 border-t border-border"
                 >
-                  <Link to="/contact" className="w-full py-3 px-4 rounded-lg transition-colors">
-                    Let's Talk
-                  </Link>
+                  <Button variant="gradient" className="w-full" asChild>
+                    <Link to="/contact">
+                      Let's Talk
+                    </Link>
+                  </Button>
                 </motion.div>
               </div>
             </motion.nav>

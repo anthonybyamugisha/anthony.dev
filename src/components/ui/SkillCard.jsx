@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Badge } from "./Badge";
 
 const SkillCard = ({ title, icon: Icon, skills, delay = 0 }) => {
   return (
@@ -20,9 +21,9 @@ const SkillCard = ({ title, icon: Icon, skills, delay = 0 }) => {
       </div>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) => (
-          <span key={skill} className="skill-tag">
+          <Badge key={skill} variant="secondary">
             {skill}
-          </span>
+          </Badge>
         ))}
       </div>
     </motion.div>

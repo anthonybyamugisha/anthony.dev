@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProjectCard from '../components/ui/ProjectCard';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '../components/ui/Carousel';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
@@ -219,6 +220,35 @@ const Projects = () => {
               </button>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Featured Projects Carousel */}
+      <section className="py-12 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Featured Projects</h2>
+          <Carousel className="w-full max-w-5xl mx-auto">
+            <CarouselContent>
+              {projects.slice(0, 3).map((project, index) => (
+                <CarouselItem key={project.id}>
+                  <div className="p-1">
+                    <ProjectCard
+                      id={project.id}
+                      title={project.title}
+                      description={project.description}
+                      techStack={project.techStack}
+                      features={project.features}
+                      githubUrl={project.github}
+                      image={project.image}
+                      delay={index * 0.1}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </section>
 

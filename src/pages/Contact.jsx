@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser'
 import { Link } from 'react-router-dom'
 import { useToast } from '../hooks/useToast'
+import { Calendar } from '../components/ui/Calendar'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -369,6 +370,21 @@ const Contact = () => {
                     className="w-full px-4 py-3 glass focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 focus:shadow-glow resize-none"
                     placeholder="Tell me about your project or just say hello..."
                   />
+                </div>
+
+                {/* Calendar for scheduling */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Preferred Meeting Date (Optional)
+                  </label>
+                  <div className="glass rounded-lg p-4">
+                    <Calendar
+                      mode="single"
+                      selected={new Date()}
+                      onSelect={() => {}}
+                      className="rounded-md"
+                    />
+                  </div>
                 </div>
 
                 <button

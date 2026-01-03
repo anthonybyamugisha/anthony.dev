@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "./ui/AlertDialog";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -49,16 +50,30 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex justify-center md:justify-end gap-4">
             {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300 hover:shadow-glow"
-                aria-label={social.label}
-              >
-                <social.icon className="w-4 h-4" />
-              </a>
+              <AlertDialog key={social.label}>
+                <AlertDialogTrigger asChild>
+                  <button
+                    className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300 hover:shadow-glow"
+                    aria-label={`Open ${social.label}`}
+                  >
+                    <social.icon className="w-4 h-4" />
+                  </button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Leaving the site</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      You are about to leave this site and open {social.label}. Are you sure you want to continue?
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => window.open(social.href, '_blank', 'noopener,noreferrer')}>
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             ))}
           </div>
         </div>

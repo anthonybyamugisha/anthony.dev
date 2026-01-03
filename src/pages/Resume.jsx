@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import anthonyImage from '/images/anthony.jpg'
 import SkillCard from '../components/ui/SkillCard'
 import TimelineItem from '../components/ui/TimelineItem'
+import { Badge } from '../components/ui/Badge'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/Accordion'
 import { Code, Cpu, Zap } from 'lucide-react'
 
 const Resume = () => {
@@ -268,17 +270,26 @@ const Resume = () => {
             Education Timeline
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
-          <div className="space-y-2">
+          <Accordion type="single" collapsible className="space-y-2">
             {education.map((edu, index) => (
-              <TimelineItem
-                key={index}
-                title={edu.degree}
-                institution={edu.institution}
-                period={edu.period}
-                delay={index * 0.1}
-              />
+              <AccordionItem value={`item-${index}`} key={index}>
+                <AccordionTrigger>
+                  <div className="text-left">
+                    <h4 className="font-semibold text-foreground">{edu.degree}</h4>
+                    <p className="text-sm text-muted-foreground">{edu.institution}</p>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <TimelineItem
+                    title={edu.degree}
+                    institution={edu.institution}
+                    period={edu.period}
+                    delay={index * 0.1}
+                  />
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </section>
 
         {/* Awards and Honors */}
@@ -287,19 +298,28 @@ const Resume = () => {
             Outstanding Academic Achievements
             <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
-          <div className="space-y-2">
+          <Accordion type="single" collapsible className="space-y-2">
             {awards.map((award, index) => (
-              <TimelineItem
-                key={index}
-                title={award.title}
-                institution={award.institution}
-                period={award.year}
-                description={award.description}
-                achievement="Outstanding Achievement"
-                delay={index * 0.1 + 0.3}
-              />
+              <AccordionItem value={`award-${index}`} key={index}>
+                <AccordionTrigger>
+                  <div className="text-left">
+                    <h4 className="font-semibold text-foreground">{award.title}</h4>
+                    <p className="text-sm text-muted-foreground">{award.institution}</p>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <TimelineItem
+                    title={award.title}
+                    institution={award.institution}
+                    period={award.year}
+                    description={award.description}
+                    achievement="Outstanding Achievement"
+                    delay={index * 0.1 + 0.3}
+                  />
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </section>
 
         {/* Skills */}

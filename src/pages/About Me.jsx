@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import anthonyImage from '/images/anthony.jpg'
+import { Card, CardContent } from '../components/ui/Card'
+import { Alert, AlertTitle, AlertDescription } from '../components/ui/Alert'
 
 const AboutMe = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -280,16 +282,15 @@ const AboutMe = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {skills.map((skill, index) => (
-              <div
+              <Card
                 key={skill.title}
-                className={`group glass p-6 rounded-xl transition-all duration-500 transform hover:-translate-y-4 card-hover border border-border relative overflow-hidden ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group p-6 rounded-xl transition-all duration-500 transform hover:-translate-y-4 card-hover relative overflow-hidden ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.1}s`,
                   transitionDelay: `${600 + index * 100}ms`
                 }}
               >
-                
-                <div className="relative z-10">
+                <CardContent className="p-0 relative z-10">
                   {/* Icon container with enhanced animation */}
                   <div className="text-primary mb-4 transform transition-all duration-500 group-hover:scale-110 group-hover:text-secondary">
                     <div className="p-3 bg-primary/10 rounded-lg w-16 h-16 flex items-center justify-center group-hover:bg-secondary/10 transition-colors duration-300">
@@ -304,8 +305,8 @@ const AboutMe = () => {
                   
                   {/* Corner accent */}
                   <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-bl-full"></div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -327,26 +328,28 @@ const AboutMe = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {beyondCoding.map((item, index) => (
-              <div
+              <Card
                 key={item.title}
-                className={`group text-center p-6 rounded-xl glass card-hover transform hover:-translate-y-2 hover:scale-105 border border-border ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group text-center p-6 rounded-xl card-hover transform hover:-translate-y-2 hover:scale-105 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.15}s`,
                   transitionDelay: `${900 + index * 100}ms`
                 }}
               >
-                {/* Enhanced icon container */}
-                <div className="relative mb-4 flex justify-center">
-                  <div className="absolute w-16 h-16 bg-gradient-primary rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300 transform group-hover:scale-125"></div>
-                  <div className="text-primary group-hover:text-secondary flex justify-center transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-6 z-10">
-                    <div className="p-3 bg-card rounded-full transition-shadow duration-300">
-                      {item.icon}
+                <CardContent className="p-0">
+                  {/* Enhanced icon container */}
+                  <div className="relative mb-4 flex justify-center">
+                    <div className="absolute w-16 h-16 bg-gradient-primary rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300 transform group-hover:scale-125"></div>
+                    <div className="text-primary group-hover:text-secondary flex justify-center transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-6 z-10">
+                      <div className="p-3 bg-card rounded-full transition-shadow duration-300">
+                        {item.icon}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <h3 className="text-xl font-bold text-foreground group-hover:text-primary mb-3 transition-colors duration-300">{item.title}</h3>
-                <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{item.description}</p>
-              </div>
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary mb-3 transition-colors duration-300">{item.title}</h3>
+                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{item.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -363,15 +366,15 @@ const AboutMe = () => {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className={`glass rounded-2xl p-12 transform transition-all duration-1000 hover:scale-105 border border-border/50 hover:shadow-glow ${animatedSections[3] ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`} style={{ transitionDelay: '800ms' }}>
-            <h2 className="section-title mb-6 text-foreground relative transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '1000ms' }}>
+          <Alert className={`glass rounded-2xl p-8 transform transition-all duration-1000 hover:scale-105 border-border/50 hover:shadow-glow ${animatedSections[3] ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`} style={{ transitionDelay: '800ms' }}>
+            <AlertTitle className="text-2xl font-bold text-foreground mb-4 relative transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '1000ms' }}>
               <span className="text-gradient">
                 Ready to Start Your Project?
               </span>
-            </h2>
-            <p className="text-xl mb-8 max-w-3xl mx-auto text-muted-foreground transform transition-all duration-1000 hover:text-foreground translate-y-0 opacity-100" style={{ transitionDelay: '1200ms' }}>
+            </AlertTitle>
+            <AlertDescription className="text-xl mb-6 max-w-3xl mx-auto text-muted-foreground transform transition-all duration-1000 hover:text-foreground translate-y-0 opacity-100" style={{ transitionDelay: '1200ms' }}>
               Let's collaborate to bring your ideas to life with cutting-edge technology and innovative solutions.
-            </p>
+            </AlertDescription>
             <Link
               to="/contact"
               className="group inline-flex items-center bg-gradient-primary text-primary-foreground font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:shadow-glow"
@@ -382,7 +385,7 @@ const AboutMe = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
-          </div>
+          </Alert>
         </div>
       </section>
     </div>
