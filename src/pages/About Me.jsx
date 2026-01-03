@@ -119,9 +119,9 @@ const AboutMe = () => {
   }, [])
 
   return (
-    <div className="bg-white">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative text-white overflow-hidden min-h-screen flex items-center bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+      <section className="relative text-white overflow-hidden min-h-screen flex items-center bg-gradient-primary">
         {/* Background Image */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div 
@@ -138,30 +138,30 @@ const AboutMe = () => {
         </div>
         
         {/* Multi-layered Overlay for Professional Look - Reduced top coverage */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 via-purple-800/50 to-indigo-900/60"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-glow"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent"></div>
         
         {/* Backdrop blur for depth - Reduced */}
         <div className="absolute inset-0 backdrop-blur-[0.2px]"></div>
         
         {/* Enhanced Animated background elements */}
         <div className="absolute inset-0">
-          <div className={`absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '2s', transitionDelay: '0.8s' }}></div>
-          <div className={`absolute top-20 right-20 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '2s', transitionDelay: '1.0s' }}></div>
-          <div className={`absolute bottom-20 left-20 w-36 h-36 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : 'translate-y-10 opacity-0'}`} style={{ animationDelay: '4s', transitionDelay: '1.2s' }}></div>
-          <div className={`absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '1s', transitionDelay: '1.4s' }}></div>
-          <div className={`absolute bottom-10 right-10 w-24 h-24 bg-cyan-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : 'translate-y-10 opacity-0'}`} style={{ animationDelay: '3s', transitionDelay: '1.6s' }}></div>
-          <div className={`absolute top-1/3 left-1/3 w-20 h-20 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-15' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '5s', transitionDelay: '1.8s' }}></div>
+          <div className={`absolute top-10 left-10 w-32 h-32 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '2s', transitionDelay: '0.8s' }}></div>
+          <div className={`absolute top-20 right-20 w-40 h-40 bg-secondary rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '2s', transitionDelay: '1.0s' }}></div>
+          <div className={`absolute bottom-20 left-20 w-36 h-36 bg-accent rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : 'translate-y-10 opacity-0'}`} style={{ animationDelay: '4s', transitionDelay: '1.2s' }}></div>
+          <div className={`absolute top-1/2 right-1/4 w-28 h-28 bg-destructive rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '1s', transitionDelay: '1.4s' }}></div>
+          <div className={`absolute bottom-10 right-10 w-24 h-24 bg-primary/80 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-20' : 'translate-y-10 opacity-0'}`} style={{ animationDelay: '3s', transitionDelay: '1.6s' }}></div>
+          <div className={`absolute top-1/3 left-1/3 w-20 h-20 bg-secondary/80 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-float transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-15' : '-translate-y-10 opacity-0'}`} style={{ animationDelay: '5s', transitionDelay: '1.8s' }}></div>
         </div>
         
         {/* Minimal depth gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-background/10"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 z-10">
           <div className="text-center">
             <div className="mb-6 sm:mb-8">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-gradient">
                 <div className="flex flex-wrap justify-center gap-2 md:gap-4">
                   {nameWords.map((word, index) => (
                     <span 
@@ -169,7 +169,6 @@ const AboutMe = () => {
                       className={`inline-block transform transition-all duration-1000 ${isLoaded ? 'translate-x-0 translate-y-0 opacity-100 rotate-0' : 'translate-y-10 opacity-0'}`}
                       style={{ 
                         transitionDelay: `${0.5 + index * 0.3}s`,
-                        color: '#fff', 
                         textShadow: '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
                         WebkitTextStroke: '1px rgba(255,255,255,0.1)'
                       }}
@@ -179,7 +178,7 @@ const AboutMe = () => {
                   ))}
                 </div>
               </h1>
-              <div className={`w-16 sm:w-24 h-1 bg-gradient-to-r from-white to-blue-200 mx-auto rounded-full transition-all duration-1000 shadow-lg ${isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}`} style={{ transitionDelay: '1.3s', boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}></div>
+              <div className={`w-16 sm:w-24 h-1 bg-gradient-primary mx-auto rounded-full transition-all duration-1000 shadow-lg ${isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}`} style={{ transitionDelay: '1.3s', boxShadow: '0 0 10px rgba(255,255,255,0.5)' }}></div>
             </div>
             <div className="mb-8 sm:mb-12">
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl leading-relaxed max-w-5xl mx-auto">
@@ -223,8 +222,7 @@ const AboutMe = () => {
             <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center transition-all duration-1000 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '2.5s' }}>
               <Link
                 to="/projects"
-                className="w-full sm:w-auto group bg-white/95 hover:bg-white text-blue-600 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:rotate-1 shadow-2xl hover:shadow-3xl border-2 border-transparent hover:border-blue-300 backdrop-blur-sm"
-                style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.1)' }}
+                className="w-full sm:w-auto group glass hover:bg-card/80 text-foreground font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:shadow-glow"
               >
                 <span className="flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -235,11 +233,7 @@ const AboutMe = () => {
               </Link>
               <Link
                 to="/resume"
-                className="w-full sm:w-auto group border-2 border-white/90 text-white hover:bg-white hover:text-blue-600 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:-rotate-1 backdrop-blur-sm"
-                style={{ 
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.3), inset 0 0 20px rgba(255,255,255,0.1)',
-                  textShadow: '1px 1px 4px rgba(0,0,0,0.5)'
-                }}
+                className="w-full sm:w-auto group glass hover:bg-card/80 text-foreground font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:shadow-glow"
               >
                 <span className="flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,58 +263,47 @@ const AboutMe = () => {
       </section>
 
       {/* What I Do Section */}
-      <section className={`py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden transform transition-all duration-1000 ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-          }}></div>
-        </div>
+      <section className={`py-20 bg-background relative overflow-hidden transform transition-all duration-1000 ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-block">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 relative transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '200ms' }}>
+              <h2 className="section-title mb-4 relative transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '200ms' }}>
                 What I Do
-                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 transform scale-x-0 transition-transform duration-700 group-hover:scale-x-100"></div>
+                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-primary transform scale-x-0 transition-transform duration-700 group-hover:scale-x-100"></div>
               </h2>
             </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto transform transition-all duration-1000 hover:text-gray-800 translate-y-0 opacity-100" style={{ transitionDelay: '400ms' }}>
+            <p className="section-subtitle max-w-3xl mx-auto transform transition-all duration-1000 hover:text-foreground translate-y-0 opacity-100" style={{ transitionDelay: '400ms' }}>
               I specialize in building modern, scalable solutions across multiple platforms
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mobile-project-grid">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {skills.map((skill, index) => (
               <div
                 key={skill.title}
-                className={`group bg-gradient-to-br from-white to-gray-50 p-6 mobile-card rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 hover:rotate-2 card-hover border border-gray-200 hover:border-teal-300 relative overflow-hidden ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group glass p-6 rounded-xl transition-all duration-500 transform hover:-translate-y-4 card-hover border border-border relative overflow-hidden ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.1}s`,
                   transitionDelay: `${600 + index * 100}ms`
                 }}
               >
-                {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 to-cyan-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 -z-10"></div>
                 
                 <div className="relative z-10">
                   {/* Icon container with enhanced animation */}
-                  <div className="text-teal-600 mb-4 transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:text-cyan-600">
-                    <div className="p-3 bg-teal-50 rounded-lg w-16 h-16 flex items-center justify-center group-hover:bg-cyan-100 transition-colors duration-300">
+                  <div className="text-primary mb-4 transform transition-all duration-500 group-hover:scale-110 group-hover:text-secondary">
+                    <div className="p-3 bg-primary/10 rounded-lg w-16 h-16 flex items-center justify-center group-hover:bg-secondary/10 transition-colors duration-300">
                       {skill.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors duration-300">{skill.title}</h3>
-                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{skill.description}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">{skill.title}</h3>
+                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{skill.description}</p>
                   
                   {/* Animated bottom border */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                   
                   {/* Corner accent */}
-                  <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-bl-full"></div>
+                  <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-bl-full"></div>
                 </div>
               </div>
             ))}
@@ -329,26 +312,24 @@ const AboutMe = () => {
       </section>
 
       {/* Beyond Coding Section */}
-      <section className={`py-20 bg-gradient-to-br from-white to-gray-100 relative overflow-hidden transform transition-all duration-1000 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-500 via-cyan-500 to-blue-500"></div>
+      <section className={`py-20 bg-background relative overflow-hidden transform transition-all duration-1000 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 relative inline-block transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '500ms' }}>
+            <h2 className="section-title mb-4 relative inline-block transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '500ms' }}>
               Beyond Coding
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"></div>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-primary rounded-full"></div>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto transform transition-all duration-1000 hover:text-gray-800 translate-y-0 opacity-100" style={{ transitionDelay: '700ms' }}>
+            <p className="section-subtitle max-w-3xl mx-auto transform transition-all duration-1000 hover:text-foreground translate-y-0 opacity-100" style={{ transitionDelay: '700ms' }}>
               My commitment to growth and community extends beyond writing code
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mobile-project-grid">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {beyondCoding.map((item, index) => (
               <div
                 key={item.title}
-                className={`group text-center p-6 mobile-card rounded-xl bg-gradient-to-br from-white to-gray-50 hover:from-cyan-50 hover:to-blue-50 hover:shadow-lg transition-all duration-500 card-hover transform hover:-translate-y-2 hover:scale-105 border border-gray-200 hover:border-cyan-300 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group text-center p-6 rounded-xl glass card-hover transform hover:-translate-y-2 hover:scale-105 border border-border ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.15}s`,
                   transitionDelay: `${900 + index * 100}ms`
@@ -356,23 +337,15 @@ const AboutMe = () => {
               >
                 {/* Enhanced icon container */}
                 <div className="relative mb-4 flex justify-center">
-                  <div className="absolute w-16 h-16 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300 transform group-hover:scale-125"></div>
-                  <div className="text-teal-600 group-hover:text-cyan-600 flex justify-center transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-6 z-10">
-                    <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg transition-shadow duration-300">
+                  <div className="absolute w-16 h-16 bg-gradient-primary rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300 transform group-hover:scale-125"></div>
+                  <div className="text-primary group-hover:text-secondary flex justify-center transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-6 z-10">
+                    <div className="p-3 bg-card rounded-full transition-shadow duration-300">
                       {item.icon}
                     </div>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-cyan-700 mb-3 transition-colors duration-300">{item.title}</h3>
-                <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{item.description}</p>
-                
-                {/* Hover glow effect */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10"></div>
-                
-                {/* Subtle pulse animation on hover */}
-                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-5 transition-opacity duration-500 -z-10">
-                  <div className="absolute inset-0 rounded-xl border-2 border-dashed border-cyan-300 animate-pulse"></div>
-                </div>
+                <h3 className="text-xl font-bold text-foreground group-hover:text-primary mb-3 transition-colors duration-300">{item.title}</h3>
+                <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{item.description}</p>
               </div>
             ))}
           </div>
@@ -380,28 +353,28 @@ const AboutMe = () => {
       </section>
 
       {/* Call-to-Action Section */}
-      <section className={`py-20 bg-white relative overflow-hidden transform transition-all duration-1000 ${animatedSections[3] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+      <section className={`py-20 bg-background relative overflow-hidden transform transition-all duration-1000 ${animatedSections[3] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
 
         {/* Animated background particles */}
         <div className="absolute inset-0">
-          <div className={`absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping ${animatedSections[3] ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '0s', transitionDelay: '0.5s' }}></div>
-          <div className={`absolute top-3/4 right-1/4 w-2 h-2 bg-purple-400 rounded-full animate-ping ${animatedSections[3] ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '1s', transitionDelay: '0.7s' }}></div>
-          <div className={`absolute top-1/2 left-1/2 w-2 h-2 bg-indigo-400 rounded-full animate-ping ${animatedSections[3] ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '2s', transitionDelay: '0.9s' }}></div>
+          <div className={`absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full animate-ping ${animatedSections[3] ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '0s', transitionDelay: '0.5s' }}></div>
+          <div className={`absolute top-3/4 right-1/4 w-2 h-2 bg-secondary rounded-full animate-ping ${animatedSections[3] ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '1s', transitionDelay: '0.7s' }}></div>
+          <div className={`absolute top-1/2 left-1/2 w-2 h-2 bg-accent rounded-full animate-ping ${animatedSections[3] ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '2s', transitionDelay: '0.9s' }}></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className={`bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-12 transform transition-all duration-1000 hover:scale-105 border border-blue-100 hover:border-purple-200 shadow-lg hover:shadow-2xl ${animatedSections[3] ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`} style={{ transitionDelay: '800ms' }}>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 relative transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '1000ms' }}>
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <div className={`glass rounded-2xl p-12 transform transition-all duration-1000 hover:scale-105 border border-border/50 hover:shadow-glow ${animatedSections[3] ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`} style={{ transitionDelay: '800ms' }}>
+            <h2 className="section-title mb-6 text-foreground relative transform transition-all duration-1000 translate-y-0 opacity-100" style={{ transitionDelay: '1000ms' }}>
+              <span className="text-gradient">
                 Ready to Start Your Project?
               </span>
             </h2>
-            <p className="text-xl mb-8 max-w-3xl mx-auto text-gray-700 transform transition-all duration-1000 hover:text-gray-900 translate-y-0 opacity-100" style={{ transitionDelay: '1200ms' }}>
+            <p className="text-xl mb-8 max-w-3xl mx-auto text-muted-foreground transform transition-all duration-1000 hover:text-foreground translate-y-0 opacity-100" style={{ transitionDelay: '1200ms' }}>
               Let's collaborate to bring your ideas to life with cutting-edge technology and innovative solutions.
             </p>
             <Link
               to="/contact"
-              className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:-rotate-1 shadow-lg hover:shadow-2xl translate-y-0 opacity-100"
+              className="group inline-flex items-center bg-gradient-primary text-primary-foreground font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:shadow-glow"
               style={{ transitionDelay: '1400ms' }}
             >
               <span className="mr-2">Let's Talk</span>

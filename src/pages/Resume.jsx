@@ -110,15 +110,15 @@ const Resume = () => {
   }, [])
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen">
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white py-16 relative overflow-hidden">
+      <section className="bg-gradient-primary text-white py-16 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
-          <div className="absolute top-20 right-20 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute bottom-20 left-20 w-36 h-36 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '4s' }}></div>
-          <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-10 left-10 w-32 h-32 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
+          <div className="absolute top-20 right-20 w-40 h-40 bg-secondary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute bottom-20 left-20 w-36 h-36 bg-accent rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '4s' }}></div>
+          <div className="absolute top-1/2 right-1/4 w-28 h-28 bg-destructive rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
         </div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Professional Circular Image - Top Right */}
@@ -228,17 +228,17 @@ const Resume = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Personal Statement */}
         <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
+          <h3 className="section-title mb-6 border-b-2 border-border pb-2 relative group">
             Personal Statement
-            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
+            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
-          <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6 rounded-lg shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 border border-blue-100 hover:border-blue-200 relative overflow-hidden group">
+          <div className="glass p-6 rounded-lg shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 border border-border relative overflow-hidden group">
             {/* Animated background elements */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-2 right-2 w-8 h-8 bg-blue-400 rounded-full blur-md animate-pulse"></div>
-              <div className="absolute bottom-2 left-2 w-6 h-6 bg-purple-400 rounded-full blur-sm animate-bounce" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute top-2 right-2 w-8 h-8 bg-primary rounded-full blur-md animate-pulse"></div>
+              <div className="absolute bottom-2 left-2 w-6 h-6 bg-secondary rounded-full blur-sm animate-bounce" style={{ animationDelay: '1s' }}></div>
             </div>
-            <p className="text-gray-700 leading-relaxed text-lg relative z-10 group-hover:text-gray-800 transition-colors duration-300">
+            <p className="text-foreground leading-relaxed text-lg relative z-10 group-hover:text-foreground transition-colors duration-300">
               Second-year Computer Science student at Makerere University with a strong passion for data science and analytics. 
               Demonstrated exceptional academic performance throughout my educational journey, coupled with strong problem-solving 
               skills and an eagerness to learn and apply cutting-edge technologies in real-world scenarios.
@@ -248,34 +248,34 @@ const Resume = () => {
 
         {/* Education Timeline */}
         <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
+          <h3 className="section-title mb-6 border-b-2 border-border pb-2 relative group">
             Education Timeline
-            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
+            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
           <div className="space-y-6">
             {education.map((edu, index) => (
               <div 
                 key={index} 
-                className="flex flex-col md:flex-row md:items-center bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group relative overflow-hidden"
+                className="flex flex-col md:flex-row md:items-center glass border border-border rounded-lg p-6 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group relative overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="md:w-32 mb-2 md:mb-0 relative z-10">
                   <span className={`inline-block px-3 py-1 text-sm font-medium rounded-full transition-all duration-300 transform group-hover:scale-110 ${
-                    edu.status === 'Current' ? 'bg-green-100 text-green-800 group-hover:bg-green-200' : 'bg-blue-100 text-blue-800 group-hover:bg-blue-200'
+                    edu.status === 'Current' ? 'bg-green-100 text-green-800 group-hover:bg-green-200' : 'bg-primary/20 text-primary group-hover:bg-primary/30'
                   }`}>
                     {edu.period}
                   </span>
                 </div>
                 <div className="md:ml-6 flex-1 relative z-10">
-                  <h4 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">{edu.institution}</h4>
-                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{edu.degree}</p>
+                  <h4 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{edu.institution}</h4>
+                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{edu.degree}</p>
                 </div>
                 
                 {/* Animated border */}
-                <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-500"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
               </div>
             ))}
           </div>
@@ -283,46 +283,46 @@ const Resume = () => {
 
         {/* Awards and Honors */}
         <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
+          <h3 className="section-title mb-6 border-b-2 border-border pb-2 relative group">
             Outstanding Academic Achievements
-            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
+            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
           <div className="grid gap-8">
             {awards.map((award, index) => (
-              <div key={index} className="relative bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border border-amber-200 rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 overflow-hidden group">
+              <div key={index} className="relative glass border border-border rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 overflow-hidden group">
                 {/* Animated background elements */}
                 <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-2 right-2 w-16 h-16 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full blur-xl animate-pulse"></div>
-                  <div className="absolute bottom-2 left-2 w-12 h-12 bg-gradient-to-br from-orange-300 to-red-400 rounded-full blur-lg animate-bounce" style={{ animationDelay: '1s' }}></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full blur-md animate-ping" style={{ animationDelay: '2s' }}></div>
+                  <div className="absolute top-2 right-2 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full blur-xl animate-pulse"></div>
+                  <div className="absolute bottom-2 left-2 w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-full blur-lg animate-bounce" style={{ animationDelay: '1s' }}></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-br from-accent to-primary rounded-full blur-md animate-ping" style={{ animationDelay: '2s' }}></div>
                 </div>
                 
                 {/* Gradient overlay that appears on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-200/20 to-amber-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
                 
                 <div className="relative z-10 flex items-start">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <svg className="w-8 h-8 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     </div>
                   </div>
                   <div className="ml-4 flex-1">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                      <h4 className="text-xl font-semibold text-gray-900 group-hover:text-amber-700 transition-colors duration-300">{award.title}</h4>
+                      <h4 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{award.title}</h4>
                       <div className="flex flex-col md:items-end">
-                        <span className="text-sm font-medium text-white bg-gradient-to-r from-amber-500 to-yellow-600 px-3 py-1 rounded-full shadow-sm">{award.year}</span>
-                        <span className="text-sm text-gray-600 mt-1 font-medium">{award.institution}</span>
+                        <span className="text-sm font-medium text-primary-foreground bg-gradient-primary px-3 py-1 rounded-full shadow-sm">{award.year}</span>
+                        <span className="text-sm text-muted-foreground mt-1 font-medium">{award.institution}</span>
                       </div>
                     </div>
-                    <p className="text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">{award.description}</p>
+                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">{award.description}</p>
                   </div>
                 </div>
                 
                 {/* Animated border */}
-                <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ padding: '2px' }}>
-                  <div className="w-full h-full bg-white rounded-lg"></div>
+                <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ padding: '2px' }}>
+                  <div className="w-full h-full bg-card rounded-lg"></div>
                 </div>
               </div>
             ))}
@@ -331,23 +331,23 @@ const Resume = () => {
 
         {/* Skills */}
         <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
+          <h3 className="section-title mb-6 border-b-2 border-border pb-2 relative group">
             Technical Expertise
-            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
+            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
           <div className="space-y-6">
-            <div className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-xl p-6 border border-blue-200 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
+            <div className="relative glass rounded-xl p-6 border border-border hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
               {/* Animated background elements */}
               <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full blur-lg animate-pulse"></div>
-                <div className="absolute bottom-2 left-2 w-8 h-8 bg-gradient-to-br from-purple-400 to-blue-500 rounded-full blur-md animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+                <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full blur-lg animate-pulse"></div>
+                <div className="absolute bottom-2 left-2 w-8 h-8 bg-gradient-to-br from-secondary to-accent rounded-full blur-md animate-bounce" style={{ animationDelay: '0.5s' }}></div>
               </div>
               
               <div className="relative z-10">
-                <h4 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">Programming Languages</h4>
+                <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">Programming Languages</h4>
                 <div className="flex flex-wrap gap-2">
                   {skills.programming.map((skill) => (
-                    <span key={skill} className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300">
+                    <span key={skill} className="bg-gradient-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300">
                       {skill}
                     </span>
                   ))}
@@ -355,18 +355,18 @@ const Resume = () => {
               </div>
             </div>
             
-            <div className="relative bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 rounded-xl p-6 border border-green-200 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
+            <div className="relative glass rounded-xl p-6 border border-border hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
               {/* Animated background elements */}
               <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-2 left-2 w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-lg animate-ping" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute bottom-2 right-2 w-14 h-14 bg-gradient-to-br from-teal-400 to-green-500 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+                <div className="absolute top-2 left-2 w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full blur-lg animate-ping" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute bottom-2 right-2 w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-full blur-xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
               </div>
               
               <div className="relative z-10">
-                <h4 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-green-600 transition-colors duration-300">Frameworks & Libraries</h4>
+                <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">Frameworks & Libraries</h4>
                 <div className="flex flex-wrap gap-2">
                   {skills.frameworks.map((skill) => (
-                    <span key={skill} className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300">
+                    <span key={skill} className="bg-gradient-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300">
                       {skill}
                     </span>
                   ))}
@@ -374,17 +374,17 @@ const Resume = () => {
               </div>
             </div>
             
-            <div className="relative bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50 rounded-xl p-6 border border-purple-200 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
+            <div className="relative glass rounded-xl p-6 border border-border hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
               {/* Animated background elements */}
               <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-purple-400 to-fuchsia-500 rounded-full blur-xl animate-bounce" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full blur-xl animate-bounce" style={{ animationDelay: '2s' }}></div>
               </div>
               
               <div className="relative z-10">
-                <h4 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">Methodologies</h4>
+                <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">Methodologies</h4>
                 <div className="flex flex-wrap gap-2">
                   {skills.methodologies.map((skill) => (
-                    <span key={skill} className="bg-gradient-to-r from-purple-500 to-fuchsia-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300">
+                    <span key={skill} className="bg-gradient-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-300">
                       {skill}
                     </span>
                   ))}
@@ -396,30 +396,30 @@ const Resume = () => {
 
         {/* Languages */}
         <section className="mb-12 transform transition-all duration-1000 translate-y-0 opacity-100">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-blue-600 pb-2 relative group">
+          <h3 className="section-title mb-6 border-b-2 border-border pb-2 relative group">
             Languages
-            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:w-full transition-all duration-500"></div>
+            <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-500"></div>
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {languages.map((lang, index) => (
-              <div key={index} className="relative bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 rounded-xl p-6 border border-indigo-200 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden mobile-card">
+              <div key={index} className="relative glass rounded-xl p-6 border border-border hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 group overflow-hidden">
                 {/* Animated background elements */}
                 <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-2 right-2 w-10 h-10 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-full blur-lg animate-pulse" style={{ animationDelay: `${index * 0.3}s` }}></div>
-                  <div className="absolute bottom-2 left-2 w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full blur-md animate-bounce" style={{ animationDelay: `${index * 0.5 + 0.5}s` }}></div>
+                  <div className="absolute top-2 right-2 w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full blur-lg animate-pulse" style={{ animationDelay: `${index * 0.3}s` }}></div>
+                  <div className="absolute bottom-2 left-2 w-8 h-8 bg-gradient-to-br from-secondary to-accent rounded-full blur-md animate-bounce" style={{ animationDelay: `${index * 0.5 + 0.5}s` }}></div>
                 </div>
                 
                 <div className="relative z-10 text-center">
-                  <h4 className="font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300 mb-2">{lang.language}</h4>
-                  <p className="text-sm text-gray-600 mb-4">{lang.proficiency}</p>
+                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-2">{lang.language}</h4>
+                  <p className="text-sm text-muted-foreground mb-4">{lang.proficiency}</p>
                   <div className="flex items-center justify-center space-x-1">
                     {[...Array(5)].map((_, dotIndex) => (
                       <div
                         key={dotIndex}
                         className={`w-3 h-3 rounded-full transition-all duration-500 transform hover:scale-125 ${
                           dotIndex < lang.level
-                            ? 'bg-gradient-to-r from-indigo-500 to-blue-600 shadow-md'
-                            : 'bg-gray-200 hover:bg-gray-300'
+                            ? 'bg-gradient-primary shadow-md'
+                            : 'bg-muted hover:bg-muted-foreground'
                         }`}
                         style={{ 
                           animationDelay: `${dotIndex * 0.1}s`,

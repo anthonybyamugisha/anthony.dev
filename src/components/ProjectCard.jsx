@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ProjectCard = ({
+  id,
   title,
   description,
   techStack,
@@ -66,17 +68,18 @@ const ProjectCard = ({
 
         {/* Links */}
         <div className="flex gap-3 pt-4 border-t border-border/50">
+          <Link 
+            to={`/projects/${id}`}
+            className="flex-1 px-4 py-2 rounded-lg border border-border text-foreground hover:bg-muted transition-colors duration-300 flex items-center justify-center gap-2"
+          >
+            Details
+            <ExternalLink className="w-4 h-4" />
+          </Link>
           {githubUrl && (
-            <button className="flex-1 px-4 py-2 rounded-lg border border-border text-foreground hover:bg-muted transition-colors duration-300 flex items-center justify-center gap-2">
+            <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 px-4 py-2 rounded-lg border border-border text-foreground hover:bg-muted transition-colors duration-300 flex items-center justify-center gap-2">
               <Github className="w-4 h-4" />
               Code
-            </button>
-          )}
-          {liveUrl && (
-            <button className="flex-1 px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground hover:shadow-glow transition-shadow duration-300 flex items-center justify-center gap-2">
-              <ExternalLink className="w-4 h-4" />
-              Live Demo
-            </button>
+            </a>
           )}
         </div>
       </div>
