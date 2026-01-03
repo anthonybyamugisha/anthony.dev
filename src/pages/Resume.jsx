@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import anthonyImage from '/images/anthony.jpg'
-import SkillCard from '../components/SkillCard'
+import SkillCard from '../components/ui/SkillCard'
 import TimelineItem from '../components/TimelineItem'
 import { Code, Cpu, Zap } from 'lucide-react'
 
