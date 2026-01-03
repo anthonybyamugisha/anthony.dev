@@ -1,6 +1,6 @@
 import * as React from "react";
 
-// Import types from the Toast component
+// Toast types would be imported from the Toast component if needed
 const TOAST_LIMIT = 1;
 const TOAST_REMOVE_DELAY = 1000000;
 
