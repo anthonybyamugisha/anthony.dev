@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ProjectCard from '../components/ProjectCard';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
@@ -231,124 +232,18 @@ const Projects = () => {
               <p className="text-gray-500">There are no projects in this category yet. Check back soon!</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mobile-project-grid gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project, index) => (
-                <div 
+                <ProjectCard
                   key={project.id}
-                  className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden group mobile-card"
-                >
-                  {/* Project Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-                    {project.id === 2 ? (
-                      // Special layout for Forex Giants with two images side by side
-                      <div className="flex h-full p-4 gap-2">
-                        <img 
-                          src="/images/forex giants mobile app.jpeg"
-                          alt="Forex Giants Mobile App"
-                          className="w-1/2 h-full object-contain transition-transform duration-500 group-hover:scale-110 bg-white"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = 'https://placehold.co/300x200/3b82f6/ffffff?text=Forex+Giants+1';
-                          }}
-                        />
-                        <img 
-                          src="/images/forex giants image 2.jpeg"
-                          alt="Forex Giants Second View"
-                          className="w-1/2 h-full object-contain transition-transform duration-500 group-hover:scale-110 bg-white"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = 'https://placehold.co/300x200/3b82f6/ffffff?text=Forex+Giants+2';
-                          }}
-                        />
-                      </div>
-                    ) : project.id === 5 ? (
-                      // Special layout for Hotel Management System with increased width
-                      <div className="flex h-full p-2 justify-center">
-                        <img 
-                          src="/images/hotel management system.jpeg"
-                          alt="Hotel Management System"
-                          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 bg-white"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = 'https://placehold.co/600x400/3b82f6/ffffff?text=Hotel+Management';
-                          }}
-                        />
-                      </div>
-                    ) : (
-                      <img 
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110 bg-white"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = 'https://placehold.co/600x400/3b82f6/ffffff?text=Project+Image';
-                        }}
-                      />
-                    )}
-                  </div>
-                  
-                  {/* Project Content */}
-                  <div className="p-6">
-                    {/* Category Badge */}
-                    <div className="mb-3">
-                      <span className="inline-block bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                        {project.category}
-                      </span>
-                    </div>
-                    
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    
-                    {/* Short Description */}
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                      {project.description}
-                    </p>
-                    
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.techStack.slice(0, 3).map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.techStack.length > 3 && (
-                        <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
-                          +{project.techStack.length - 3}
-                        </span>
-                      )}
-                    </div>
-                    
-                    {/* GitHub Link and View Details Button */}
-                    <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
-                      <Link 
-                        to={`/projects/${project.id}`}
-                        className="inline-flex items-center text-blue-600 hover:text-purple-600 font-semibold transition-colors duration-300"
-                      >
-                        View Details
-                        <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-300"
-                        aria-label="View on GitHub"
-                      >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                  title={project.title}
+                  description={project.description}
+                  techStack={project.techStack}
+                  features={project.features}
+                  githubUrl={project.github}
+                  image={project.image}
+                  delay={index * 0.1}
+                />
               ))}
             </div>
           )}
