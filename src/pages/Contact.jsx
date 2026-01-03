@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser'
 import { Link } from 'react-router-dom'
 import { useToast } from '../hooks/useToast'
-import { Calendar } from '../components/ui/Calendar'
 
 const Contact = () => {
   const [formData, setFormData] = useState({

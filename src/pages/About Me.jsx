@@ -284,7 +284,7 @@ const AboutMe = () => {
             {skills.map((skill, index) => (
               <Card
                 key={skill.title}
-                className={`group p-6 rounded-xl transition-all duration-500 transform hover:-translate-y-4 card-hover relative overflow-hidden ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group p-6 rounded-xl transition-all duration-500 transform hover:-translate-y-4 card-hover relative overflow-hidden hover:shadow-hover hover:border-primary/30 ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.1}s`,
                   transitionDelay: `${600 + index * 100}ms`
@@ -330,7 +330,7 @@ const AboutMe = () => {
             {beyondCoding.map((item, index) => (
               <Card
                 key={item.title}
-                className={`group text-center p-6 rounded-xl card-hover transform hover:-translate-y-2 hover:scale-105 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group text-center p-6 rounded-xl card-hover transform hover:-translate-y-2 hover:scale-105 hover:shadow-hover hover:border-primary/30 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.15}s`,
                   transitionDelay: `${900 + index * 100}ms`
