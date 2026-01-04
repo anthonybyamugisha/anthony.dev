@@ -136,7 +136,7 @@ const ProjectDetail = () => {
         'Optimized database queries for sub-100ms response times',
         'Cross-platform mobile app'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/Vendor sync.jpeg',
       category: 'Mobile App'
     },
@@ -163,7 +163,7 @@ The app has helped thousands of users understand forex trading principles, with 
         'Progress tracking and achievements',
         'Beautiful and intuitive UI/UX design'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/forex giants mobile app.jpeg',
       category: 'Mobile App'
     },
@@ -193,7 +193,7 @@ The website's design incorporates warm, earthy tones and natural imagery to crea
         'Contact form for inquiries',
         'Nature-inspired UI/UX design'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/all organic  honey.jpeg',
       category: 'Frontend'
     },
@@ -223,7 +223,7 @@ The reporting engine features customizable date ranges, export capabilities (PDF
         'Inventory Management Reports',
         'Reservation Trend Analysis'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/hotel management system.jpeg',
       category: 'Full Stack'
     },
@@ -254,7 +254,7 @@ These chatbots have successfully reduced customer service response times by up t
         'Analytics and usage reporting',
         'Multi-platform deployment'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/ai chat bot.jpeg',
       category: 'Chatbots'
     }

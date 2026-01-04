@@ -31,7 +31,7 @@ const Projects = () => {
         'Optimized database queries for sub-100ms response times',
         'Cross-platform mobile app'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/Vendor sync.jpeg',
       category: 'Mobile App'
     },
@@ -46,7 +46,7 @@ const Projects = () => {
         'Progress tracking and achievements',
         'Beautiful and intuitive UI/UX design'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/forex giants mobile app.jpeg',
       category: 'Mobile App'
     },
@@ -64,7 +64,7 @@ const Projects = () => {
         'Contact form for inquiries',
         'Nature-inspired UI/UX design'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/all organic  honey.jpeg',
       category: 'Frontend'
     },
@@ -83,7 +83,7 @@ const Projects = () => {
         'Inventory Management Reports',
         'Reservation Trend Analysis'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/hotel management system.jpeg',
       category: 'Full Stack'
     },
@@ -102,7 +102,7 @@ const Projects = () => {
         'Analytics and usage reporting',
         'Multi-platform deployment'
       ],
-      github: 'https://github.com/anthonybyamugisha/',
+      github: 'https://github.com/anthonybyamugisha',
       image: '/images/ai chat bot.jpeg',
       category: 'Chatbots'
     }
