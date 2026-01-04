@@ -224,7 +224,7 @@ const AboutMe = () => {
             <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center transition-all duration-1000 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '2.5s' }}>
               <Link
                 to="/projects"
-                className="w-full sm:w-auto group glass hover:bg-card/80 text-foreground font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:shadow-glow"
+                className="w-full sm:w-auto group glass hover:bg-card/80 text-foreground font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-100 transform hover:scale-110 hover:shadow-glow"
               >
                 <span className="flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -235,7 +235,7 @@ const AboutMe = () => {
               </Link>
               <Link
                 to="/resume"
-                className="w-full sm:w-auto group glass hover:bg-card/80 text-foreground font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:shadow-glow"
+                className="w-full sm:w-auto group glass hover:bg-card/80 text-foreground font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-100 transform hover:scale-110 hover:shadow-glow"
               >
                 <span className="flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -284,7 +284,7 @@ const AboutMe = () => {
             {skills.map((skill, index) => (
               <Card
                 key={skill.title}
-                className={`group p-6 rounded-xl transition-all duration-500 transform hover:-translate-y-4 card-hover relative overflow-hidden hover:shadow-hover hover:border-primary/30 ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group p-6 rounded-xl transition-all duration-100 transform hover:-translate-y-4 card-hover relative overflow-hidden hover:shadow-hover hover:border-primary/30 ${animatedSections[1] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.1}s`,
                   transitionDelay: `${600 + index * 100}ms`
@@ -292,19 +292,19 @@ const AboutMe = () => {
               >
                 <CardContent className="p-0 relative z-10">
                   {/* Icon container with enhanced animation */}
-                  <div className="text-primary mb-4 transform transition-all duration-500 group-hover:scale-110 group-hover:text-secondary">
-                    <div className="p-3 bg-primary/10 rounded-lg w-16 h-16 flex items-center justify-center group-hover:bg-secondary/10 transition-colors duration-300">
+                  <div className="text-primary mb-4 transform transition-all duration-100 group-hover:scale-110 group-hover:text-secondary">
+                    <div className="p-3 bg-primary/10 rounded-lg w-16 h-16 flex items-center justify-center group-hover:bg-secondary/10 transition-colors duration-100">
                       {skill.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">{skill.title}</h3>
-                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{skill.description}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-100">{skill.title}</h3>
+                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-100">{skill.description}</p>
                   
                   {/* Animated bottom border */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-100 origin-left"></div>
                   
                   {/* Corner accent */}
-                  <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-bl-full"></div>
+                  <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-100 rounded-bl-full"></div>
                 </CardContent>
               </Card>
             ))}
@@ -330,7 +330,7 @@ const AboutMe = () => {
             {beyondCoding.map((item, index) => (
               <Card
                 key={item.title}
-                className={`group text-center p-6 rounded-xl card-hover transform hover:-translate-y-2 hover:scale-105 hover:shadow-hover hover:border-primary/30 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                className={`group text-center p-6 rounded-xl card-hover transform hover:-translate-y-2 hover:scale-105 hover:shadow-hover hover:border-primary/30 transition-all duration-100 ${animatedSections[2] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                 style={{ 
                   animationDelay: `${index * 0.15}s`,
                   transitionDelay: `${900 + index * 100}ms`
@@ -339,15 +339,15 @@ const AboutMe = () => {
                 <CardContent className="p-0">
                   {/* Enhanced icon container */}
                   <div className="relative mb-4 flex justify-center">
-                    <div className="absolute w-16 h-16 bg-gradient-primary rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300 transform group-hover:scale-125"></div>
-                    <div className="text-primary group-hover:text-secondary flex justify-center transform transition-all duration-500 group-hover:scale-125 group-hover:rotate-6 z-10">
-                      <div className="p-3 bg-card rounded-full transition-shadow duration-300">
+                    <div className="absolute w-16 h-16 bg-gradient-primary rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-100 transform group-hover:scale-125"></div>
+                    <div className="text-primary group-hover:text-secondary flex justify-center transform transition-all duration-100 group-hover:scale-125 group-hover:rotate-6 z-10">
+                      <div className="p-3 bg-card rounded-full transition-shadow duration-100">
                         {item.icon}
                       </div>
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary mb-3 transition-colors duration-300">{item.title}</h3>
-                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{item.description}</p>
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary mb-3 transition-colors duration-100">{item.title}</h3>
+                  <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-100">{item.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -377,11 +377,11 @@ const AboutMe = () => {
             </AlertDescription>
             <Link
               to="/contact"
-              className="group inline-flex items-center bg-gradient-primary text-primary-foreground font-semibold py-4 px-8 rounded-lg transition-all duration-500 transform hover:scale-110 hover:shadow-glow"
+              className="group inline-flex items-center bg-gradient-primary text-primary-foreground font-semibold py-4 px-8 rounded-lg transition-all duration-100 transform hover:scale-110 hover:shadow-glow"
               style={{ transitionDelay: '1400ms' }}
             >
               <span className="mr-2">Let's Talk</span>
-              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>

@@ -371,20 +371,7 @@ const Contact = () => {
                   />
                 </div>
 
-                {/* Calendar for scheduling */}
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Preferred Meeting Date (Optional)
-                  </label>
-                  <div className="glass rounded-lg p-4">
-                    <Calendar
-                      mode="single"
-                      selected={new Date()}
-                      onSelect={() => {}}
-                      className="rounded-md"
-                    />
-                  </div>
-                </div>
+
 
                 <button
                   type="submit"

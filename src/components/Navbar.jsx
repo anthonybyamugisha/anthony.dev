@@ -42,10 +42,10 @@ const Navbar = () => {
             <Link to="/" className="group flex items-center gap-2">
               <div className="relative w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center overflow-hidden">
                 <span className="text-primary-foreground font-bold text-lg">BA</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-100" />
               </div>
               <span className="hidden sm:block font-semibold text-foreground">
-                ALGO
+                ALGOMIND
               </span>
             </Link>
 
